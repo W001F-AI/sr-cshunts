@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <!-- iOS Safari Critical Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ff7900" id="themeColorMeta">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>ORANGE SR Encyclopedia | موسوعة أورانج الذكية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bento.css">
+    <link rel="stylesheet" href="assistant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+    <script>
+        // Diagnostic script to catch errors on mobile/Netlify
+        window.onerror = function (msg, url, line, col, error) {
+            console.error("System Error: " + msg + "\nAt: " + url + ":" + line);
+            return false;
+        };
+    </script>
+    <!-- Lucide Icons - loaded async to avoid blocking mobile render -->
+    <script src="https://unpkg.com/lucide@latest" async></script>
+    <!-- Microsoft Clarity Tracking Code -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "wa8j9evi1g");
+    </script>
+
+    <!-- PWA Manifest & iOS Support -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="asko-logo.png">
+    
+    <!-- SR Assistant Styles -->
+    <link rel="stylesheet" href="assistant.css">
+
+</head>
+
+<body>
+    <!-- Premium Mastery Elements -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="liquid-aura">
+        <div class="aura-orb aura-1"></div>
+        <div class="aura-orb aura-2"></div>
+        <div class="aura-orb aura-3"></div>
+    </div>
+
+    <!-- Custom PWA Install Banner -->
+    <div id="pwaInstallBanner" class="pwa-banner">
+        <div class="pwa-banner-content">
+            <div class="pwa-icon">
+                <div class="pwa-fallback-icon">SR</div>
+            </div>
+            <div class="pwa-text">
+                <h3>أضف موسوعة أورانج لشاشتك</h3>
+                <p>لتجربة أسرع بدون إنترنت (App Mode)</p>
+            </div>
+            <div class="pwa-actions">
+                <button id="pwaCloseBanner" class="pwa-close-btn"><i data-lucide="x"></i></button>
+                <button id="pwaInstallBtn" class="pwa-install-btn">تثبيت الآن</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SPLASH SCREEN ===== -->
+    <div id="splashScreen" class="splash-screen">
+        <!-- Background decorations (solid, no blur - iOS safe) -->
+        <div class="splash-bg">
+            <div class="splash-orb orb-1"></div>
+            <div class="splash-orb orb-2"></div>
+            <div class="splash-orb orb-3"></div>
+        </div>
+
+        <div class="splash-content">
+            <!-- 3D WOW Logo Badge -->
+            <div class="splash-3d-wrapper" id="wow3DContainer">
+                <div class="splash-pulse-ring splash-pulse-3d"></div>
+                <div class="logo-3d-core" id="wow3DLogo">
+                    <div class="logo-layer-back"></div>
+                    <div class="logo-layer-glass"></div>
+                    <div class="logo-layer-front">
+                        <div class="orange-layer-text">ORANGE</div>
+                        <div class="orange-layer-tm">TM</div>
+                    </div>
+                    <div class="sr-floating-badge">SR</div>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <h1 class="splash-title">
+                موسوعة أورانج
+                <span class="splash-gradient-text">الذكية</span>
+            </h1>
+            <p class="splash-subtitle">قاعدة البيانات الشاملة في جيبك 📱</p>
+
+            <!-- CTA Button -->
+            <button id="startJourneyBtn" class="splash-cta-btn">
+                <span>ابدأ الرحلة</span>
+                <div class="cta-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </div>
+            </button>
+
+            <!-- Minimalist 3D Developer Signature -->
+            <div class="dev-signature-minimal" id="devSignature">
+                <span class="sig-name-simple">Mohamed Issa <span class="sig-wolf">🐺</span></span>
+            </div>
+
+            <p class="splash-footer">ORANGE Egypt &nbsp;·&nbsp; Internal Use Only</p>
+        </div>
+    </div>
+    <!-- ===== END SPLASH SCREEN ===== -->
+
+    <div class="background-blobs">
+        <div class="blob orange"></div>
+        <div class="blob dark"></div>
+    </div>
+
+    <header>
+        <div class="container header-container">
+            <div class="global-search-wrapper">
+                <i data-lucide="search" class="global-search-icon"></i>
+                <input type="text" id="globalSearchInput" placeholder="بحث شامل: أرقام، إقرارات، إيميلات..."
+                    autocomplete="off">
+                <span class="search-shortcut-hint" title="اضغط / للبحث">/</span>
+                <div class="global-search-glow"></div>
+            </div>
+
+            <div class="header-actions">
+                <!-- Mobile-only compact logo (replaces 3D logo on small screens) -->
+                <div class="mobile-logo-text">
+                    <span class="mobile-logo-brand">ORANGE</span>
+                    <span class="mobile-logo-badge">SR</span>
+                </div>
+
+                <!-- Desktop 3D logo (hidden on mobile) -->
+                <div class="logo header-3d-wrapper">
+                    <div class="logo-3d-core header-3d-logo">
+                        <div class="logo-layer-back"></div>
+                        <div class="logo-layer-glass"></div>
+                        <div class="logo-layer-front">
+                            <div class="orange-layer-text">ORANGE</div>
+                            <div class="orange-layer-tm">TM</div>
+                        </div>
+                        <div class="sr-floating-badge header-floating-badge">SR</div>
+                    </div>
+                </div>
+                
+                <!-- Action buttons: news + back to home -->
+                <div class="header-buttons">
+                    <button id="newsToggleBtn" class="news-toggle-btn" title="ما الجديد؟">
+                        <i data-lucide="sparkles"></i>
+                        <span class="news-badge"></span>
+                    </button>
+
+                    <!-- Removed backToHomeBtn, moved functionality to Bottom Tab Bar -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script src="news.js"></script>
+
+    <!-- Global Search Results Modal -->
+    <div id="globalSearchModal" class="global-search-modal">
+        <div class="global-search-content">
+            <div class="global-search-header">
+                <h3>نتائج البحث الشامل</h3>
+                <button id="closeGlobalSearch" class="close-search-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div id="globalSearchResults" class="global-search-results">
+                <!-- Javascript will inject results here -->
+            </div>
+            <div id="globalSearchEmpty" class="global-search-empty" style="display: none;">
+                <i data-lucide="search-x" style="width: 48px; height: 48px; opacity: 0.5; margin-bottom: 15px;"></i>
+                <p>عفواً، لا توجد نتائج مطابقة.</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Home Dashboard (Masterpiece Addition) -->
+        <div id="welcomeDashboard" class="home-dashboard">
+            <div class="dashboard-greeting">
+                <div class="greeting-text">
+                    <h2 id="dashGreeting">صباح الخير</h2>
+                    <div class="date-time-wrapper">
+                        <p id="dashDate">الجمعة، 17 أبريل 2026</p>
+                        <p id="dashTime" class="dash-time">12:00:00 م</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-links">
+                <a href="tel:*155%23" class="dash-link-card">
+                    <div class="link-icon"><i data-lucide="phone"></i></div>
+                    <span>E-Services</span>
+                </a>
+                <a href="https://shop.orange.eg/" target="_blank" class="dash-link-card">
+                    <div class="link-icon"><i data-lucide="shopping-bag"></i></div>
+                    <span>E-Shop</span>
+                </a>
+                <a href="https://www.orange.eg/" target="_blank" class="dash-link-card">
+                    <div class="link-icon"><i data-lucide="globe"></i></div>
+                    <span>الموقع الرسمي</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- New Bento Box Dashboard -->
+        <div id="homeNavDashboard" class="bento-nav-grid active">
+            <div class="bento-card bento-large" data-tab="sr">
+                <div class="bento-visual"></div>
+                <div class="bento-content">
+                    <h3>موسوعة الـ SR</h3>
+                </div>
+                <div class="bento-icon-wrapper">
+                    <span class="badge-update">محدث</span>
+                    <i data-lucide="database"></i>
+                </div>
+            </div>
+
+            <div class="bento-card bento-medium" data-tab="premier">
+                <div class="bento-visual"></div>
+                <i data-lucide="star"></i>
+                <div class="bento-content">
+                    <h3>Premier</h3>
+                </div>
+            </div>
+
+            <div class="bento-card bento-medium" data-tab="freemax">
+                <div class="bento-visual"></div>
+                <i data-lucide="award"></i>
+                <div class="bento-content">
+                    <h3>FREEmax</h3>
+                </div>
+            </div>
+
+            <div class="bento-card bento-medium" data-tab="go">
+                <div class="bento-visual"></div>
+                <i data-lucide="zap"></i>
+                <div class="bento-content">
+                    <h3>Go & Home Wireless</h3>
+                </div>
+            </div>
+
+            <div class="bento-card bento-small" data-tab="hunts">
+                <div class="bento-visual"></div>
+                <i data-lucide="phone"></i>
+                <div class="bento-content"><h3>أرقام Hunts</h3></div>
+            </div>
+
+            <div class="bento-card bento-small" data-tab="emails">
+                <div class="bento-visual"></div>
+                <i data-lucide="mail"></i>
+                <div class="bento-content"><h3>E-Mails</h3></div>
+            </div>
+
+            <div class="bento-card bento-small" data-tab="docs">
+                <div class="bento-visual"></div>
+                <i data-lucide="folder-open"></i>
+                <div class="bento-content"><h3>Docs Hub</h3></div>
+            </div>
+
+            <div class="bento-card bento-small tracker-card-btn" data-tab="tracker">
+                <div class="bento-visual"></div>
+                <i data-lucide="target"></i>
+                <div class="bento-content"><h3>المتتبع 🎯</h3></div>
+            </div>
+
+            <div class="bento-card bento-medium" data-tab="dsl">
+                <div class="bento-visual"></div>
+                <i data-lucide="globe"></i>
+                <div class="bento-content">
+                    <h3>Home Internet (DSL)</h3>
+                </div>
+            </div>
+        </div>
+
+        <section id="srSection" class="tab-content">
+            <!-- Pull to Refresh Indicator -->
+            <div id="pullToRefresh" class="ptr-element">
+                <i data-lucide="refresh-cw"></i>
+            </div>
+
+            <section class="hero">
+                <h1>بحث احترافي، <br><span class="gradient-text">بلمسة تكنولوجية راقية.</span></h1>
+                <p>ابحث في قاعدة بيانات الـ Service Requests الشاملة. </p>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="searchInput" placeholder="ابحث برقم الـ SR أو كلمات مفتاحية..."
+                            autocomplete="off">
+                        <div id="resultCount" class="result-count">0 عنصر</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-grid" id="resultsGrid">
+                <!-- Cards will be injected here -->
+            </section>
+        </section>
+
+        <section id="huntsSection" class="tab-content">
+            <section class="hero">
+                <h1>دليل الاتصال، <br><span class="gradient-text">تواصل أسرع مع فريقك.</span></h1>
+                <p>قائمة أرقام الـ CS Hunts منظمة وجاهزة للاتصال بلمسة واحدة. <br>اضغط على الرقم للاتصال فوراً.</p>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="huntSearchInput" placeholder="ابحث عن اسم الفريق أو الرقم..."
+                            autocomplete="off">
+                        <div id="huntResultCount" class="result-count">0 فروع</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="hunts-container">
+                <div class="hunt-type-header">Cs Hants Orange</div>
+                <div class="hunts-grid" id="orangeHuntsGrid"></div>
+
+                <div class="hunt-type-header second">Cs Hants ADSL</div>
+                <div class="hunts-grid" id="adslHuntsGrid"></div>
+            </div>
+        </section>
+
+        <section id="emailsSection" class="tab-content">
+            <section class="hero">
+                <h1>دليل الإيميلات، <br><span class="gradient-text">للتواصل السريع.</span></h1>
+                <p>ابحث في قائمة الإيميلات الخاصة بـ Orange Egypt. <br>اضغط على الإيميل لنسخه أو مراسلته مباشرة.</p>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="emailSearchInput" placeholder="ابحث عن اسم الفريق أو الإيميل..."
+                            autocomplete="off">
+                        <div id="emailResultCount" class="result-count">0 جهات</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="hunts-grid" id="emailsGrid"></div>
+        </section>
+
+        <section id="docsSection" class="tab-content">
+            <section class="hero">
+                <h1>مكتبة الملفات، <br><span class="gradient-text">Orange Docs Hub.</span></h1>
+                <p>مساحة عمل مخصصة لرفع وتصفح أدلة العمل والملفات التدريبية الخاصة بالفريق. <br>المرجع الأساسي الموثوق
+                    لكل تحديثات و اجراءات Orange.</p>
+            </section>
+
+            <div class="docs-container" id="docsContainer">
+                <div class="hunts-grid" id="docsGrid">
+                    <!-- Cards will be injected from docs.json -->
+                </div>
+            </div>
+        </section>
+
+        <section id="premierSection" class="tab-content">
+            <section class="hero">
+                <h1>عالم من الرفاهية، <br><span class="gradient-text">باقات PREMIER & Super Max.</span></h1>
+                <p>استعرض تفاصيل أرقى الباقات والخدمات الحصرية. <br>كل ما تحتاجه من معلومات في مكان واحد.</p>
+            </section>
+
+            <div class="premier-notice">
+                <div class="notice-header">
+                    <i data-lucide="alert-triangle"></i>
+                    <h2>تعليمات وتسهيلات تفعيل باقات PREMIER</h2>
+                </div>
+
+                <div class="notice-steps">
+                    <div class="notice-step">
+                        <h3><i data-lucide="search"></i> الخطوة الأولى: Blacklist Check</h3>
+                        <p>لازم تعمل <strong>SR 1114</strong> وتفتح <strong>SMART SCRIPT</strong> وتكتب فيها اسم العميل
+                            والرقم القومي، ولو مفتحتش بتكتب البيانات دي في الـ <strong>NOTES</strong> الخاصة بالـ SR،
+                            وبعدها عن طريق الاتصال بـ:<br><strong>ACTIVATION POSTPAID OPTION (2)</strong></p>
+                    </div>
+                    <div class="notice-step">
+                        <h3><i data-lucide="file-text"></i> الخطوة الثانية: الإثباتات</h3>
+                        <p>لازم يكون مع العميل <strong>SECOND ID</strong> (مستند إثبات قدرة على الدفع) زي الموجود في
+                            القائمة بالأسفل، أو يدفع <strong>شهر مقدم</strong>.</p>
+                    </div>
+                    <div class="notice-step">
+                        <h3><i data-lucide="crown"></i> باقات الـ Elite (1200 / 1725)</h3>
+                        <p>في حالة باقات Premier 1200 أو 1725، لازم العميل يدفع <strong>شهر مقدم + شهر تأميني</strong>
+                            لضمان تفعيل الخدمة.</p>
+                    </div>
+                </div>
+
+                <div class="docs-grid-wrapper">
+                    <div class="docs-grid-title">
+                        <i data-lucide="info"></i>
+                        <span>مستندات القدرة على الدفع (Second ID)</span>
+                    </div>
+                    <div class="docs-grid">
+                        <div class="doc-item"><i data-lucide="map"></i> جواز سفر</div>
+                        <div class="doc-item"><i data-lucide="shield-check"></i> كارنيه شرطة أو قوات مسلحة</div>
+                        <div class="doc-item"><i data-lucide="target"></i> رخصة سلاح</div>
+                        <div class="doc-item"><i data-lucide="gavel"></i> كارنيه القضاة</div>
+                        <div class="doc-item"><i data-lucide="car"></i> رخصة قيادة / رخصة سيارة (بنفس الاسم)</div>
+                        <div class="doc-item"><i data-lucide="credit-card"></i> كارت ائتمان (Credit Card) - ليس Debit
+                        </div>
+                        <div class="doc-item"><i data-lucide="home"></i> عقد ملكية أرض أو عقار / شهادة استثمار</div>
+                        <div class="doc-item"><i data-lucide="banknote"></i> مفردات مرتب</div>
+                        <div class="doc-item"><i data-lucide="heart-pulse"></i> كارنيه تأمين طبي</div>
+                        <div class="doc-item"><i data-lucide="users"></i> كارنيه عضوية في أي نقابة</div>
+                        <div class="doc-item"><i data-lucide="file-text"></i> كشف حساب ختامي لأي بطاقة ائتمان</div>
+                        <div class="doc-item"><i data-lucide="zap"></i> فاتورة (مياه، كهرباء، محمول)</div>
+                        <div class="doc-item"><i data-lucide="wifi"></i> فاتورة إنترنت أرضي (آخر شهرين)</div>
+                        <div class="doc-item"><i data-lucide="trophy"></i> كارنيه عضوية نادي أو مركز شباب معروف</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== BILLING CALCULATOR ===== -->
+            <div class="billing-calc-wrapper">
+                <div class="billing-calc-header">
+                    <i data-lucide="calculator"></i>
+                    <div>
+                        <h2>حاسبة أنظمة الفواتير</h2>
+                        <p>اختر النظام لعرض حساب الفاتورة الشهرية الكاملة</p>
+                    </div>
+                </div>
+
+                <!-- Plan Selector Buttons -->
+                <div class="billing-plans-row" id="billingPlansRow">
+                    <button class="billing-plan-btn eagle" data-base="175" data-name="Eagle 175">Eagle 175</button>
+                    <button class="billing-plan-btn" data-base="520" data-name="PREMIER Lite">PREMIER Lite</button>
+                    <button class="billing-plan-btn" data-base="690" data-name="PREMIER Plus">PREMIER Plus</button>
+                    <button class="billing-plan-btn" data-base="860" data-name="PREMIER Select">PREMIER Select</button>
+                    <button class="billing-plan-btn elite" data-base="1200" data-name="PREMIER Ultra">PREMIER Ultra</button>
+                    <button class="billing-plan-btn elite" data-base="1725" data-name="PREMIER Platinum">PREMIER Platinum</button>
+                </div>
+
+                <!-- Formula Display -->
+                <div class="billing-display" id="billingDisplay">
+                    <div class="billing-formula-label" id="billingSystemLabel">اختر نظاماً لعرض الحساب</div>
+
+                    <div class="billing-formula" id="billingFormula" style="display:none;">
+                        <div class="formula-block">
+                            <span class="formula-val" id="fBase">-</span>
+                            <span class="formula-key">الأساسي</span>
+                        </div>
+                        <span class="formula-op">×</span>
+                        <div class="formula-block vat-block">
+                            <span class="formula-val">1.23</span>
+                            <span class="formula-key">ضريبة 23%</span>
+                        </div>
+                        <span class="formula-op">+</span>
+                        <div class="formula-block fixed-block">
+                            <span class="formula-val">12.5</span>
+                            <span class="formula-key">رسوم ثابتة</span>
+                        </div>
+                        <span class="formula-op">=</span>
+                        <div class="formula-block total-block">
+                            <span class="formula-val total-val" id="fTotal">-</span>
+                            <span class="formula-key">الإجمالي</span>
+                        </div>
+                    </div>
+
+                    <!-- Full Bill Settlement Calculator -->
+                    <div class="partial-calc-section" id="partialCalcSection" style="display:none;">
+                        <div class="settlement-title">
+                            <i data-lucide="receipt"></i>
+                            <span>تصفية حساب العميل</span>
+                        </div>
+
+                        <div class="settlement-grid">
+                            <!-- 1: Partial Days -->
+                            <div class="settlement-group">
+                                <div class="settlement-group-label">
+                                    <i data-lucide="calendar"></i>
+                                    <span>Partial Days <span class="label-hint">(أيام جزئية)</span></span>
+                                </div>
+                                <div class="settlement-row-inputs">
+                                    <input type="number" id="billingDaysInput" min="1" max="31"
+                                        placeholder="No. of Days" class="days-input">
+                                    <span class="days-of-label">/ 30 days</span>
+                                </div>
+                                <div class="settlement-line-result" id="partialResult" style="display:none;">
+                                    <span class="line-formula" id="partialFormulaText"></span>
+                                    <span class="line-amount" id="partialTotal"></span>
+                                </div>
+                            </div>
+
+                            <!-- 2: Issued Invoices -->
+                            <div class="settlement-group">
+                                <div class="settlement-group-label">
+                                    <i data-lucide="file-text"></i>
+                                    <span>Issued Invoices <span class="label-hint">(الفواتير الصادرة)</span></span>
+                                </div>
+                                <input type="number" id="issuedInvoicesInput" placeholder="Amount in EGP"
+                                    class="days-input" step="0.01" min="0">
+                                <div class="settlement-line-result" id="issuedResult" style="display:none;">
+                                    <span class="line-formula">Issued Invoices</span>
+                                    <span class="line-amount" id="issuedAmount"></span>
+                                </div>
+                            </div>
+
+                            <!-- 3: Unbilled Usage -->
+                            <div class="settlement-group">
+                                <div class="settlement-group-label">
+                                    <i data-lucide="activity"></i>
+                                    <span>Unbilled Usage</span>
+                                </div>
+                                <input type="number" id="unbilledUsageInput" placeholder="Amount in EGP"
+                                    class="days-input" step="0.01" min="0">
+                                <div class="settlement-line-result" id="usageResult" style="display:none;">
+                                    <span class="line-formula">Unbilled Usage</span>
+                                    <span class="line-amount" id="usageAmount"></span>
+                                </div>
+                            </div>
+
+                            <!-- 4: Unbilled OCC -->
+                            <div class="settlement-group">
+                                <div class="settlement-group-label">
+                                    <i data-lucide="zap"></i>
+                                    <span>Unbilled OCC</span>
+                                </div>
+                                <input type="number" id="unbilledOCCInput" placeholder="Amount in EGP"
+                                    class="days-input" step="0.01" min="0">
+                                <div class="settlement-line-result" id="occResult" style="display:none;">
+                                    <span class="line-formula">Unbilled OCC</span>
+                                    <span class="line-amount" id="occAmount"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grand Total -->
+                        <div class="grand-total-box" id="grandTotalBox" style="display:none;">
+                            <div class="grand-total-breakdown" id="grandTotalBreakdown"></div>
+                            <div class="grand-total-row">
+                                <span class="grand-total-label">
+                                    <i data-lucide="banknote"></i>
+                                    Total Amount Due
+                                </span>
+                                <span class="grand-total-amount" id="grandTotalAmount"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ===== END BILLING CALCULATOR ===== -->
+
+            <div id="plansContainer" class="container">
+                <!-- Categories and Cards will be injected here -->
+            </div>
+        </section>
+
+        <section id="goSection" class="tab-content">
+            <section class="hero">
+                <h1>عالم السرعة، <br><span class="gradient-text">GO & HOME WIRELESS.</span></h1>
+                <p>تصفح باقات GO الشهرية وباقات Home Wireless المميزة بأفضل الأسعار. <br>اختر الباقة التي تناسب
+                    استهلاكك.</p>
+            </section>
+
+            <div id="goContainer" class="container">
+                <!-- Go Plans will be injected here -->
+            </div>
+        </section>
+
+        <!-- ===== HOME INTERNET (DSL) SECTION ===== -->
+        <section id="dslSection" class="tab-content">
+            <section class="hero dsl-hero">
+                <h1>إنترنت منزلي فائق السرعة، <br><span class="gradient-text">Home Internet (DSL).</span></h1>
+                <p>تصفح أسعار باقات أورانج DSL المنزلي الجديدة بعد التعديل والضريبة. <br>احسب أسعار الباقات وقارن العروض بسهولة.</p>
+            </section>
+
+            <!-- 50% Promo Toggle Banner -->
+            <div class="container dsl-promo-banner-wrapper">
+                <div class="dsl-promo-banner">
+                    <div class="promo-text-side">
+                        <i data-lucide="gift" class="promo-icon"></i>
+                        <div>
+                            <h3>عرض الخصم 50% للعملاء الجدد! 🎁</h3>
+                            <p>قم بتفعيل التوجل لرؤية سعر الباقة بعد الخصم.</p>
+                        </div>
+                    </div>
+                    <div class="promo-toggle-side">
+                        <span class="toggle-label">تفعيل خصم الـ 50%</span>
+                        <label class="switch dsl-switch">
+                            <input type="checkbox" id="dslPromoToggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speed Filters Row -->
+            <div class="container">
+                <div class="dsl-tabs-row" id="dslSpeedTabs">
+                    <button class="dsl-tab-btn active" data-speed="all">الكل</button>
+                    <button class="dsl-tab-btn" data-speed="30">30 Mbps</button>
+                    <button class="dsl-tab-btn" data-speed="70">70 Mbps</button>
+                    <button class="dsl-tab-btn" data-speed="100">100 Mbps</button>
+                    <button class="dsl-tab-btn" data-speed="super">السرعات الفائقة (200-500)</button>
+                </div>
+            </div>
+
+            <!-- Plans Grid -->
+            <div class="container">
+                <div class="dsl-plans-grid" id="dslPlansGrid">
+                    <!-- Cards will be injected by JS -->
+                </div>
+            </div>
+
+            <!-- Add-ons Section -->
+            <div class="container">
+                <div class="dsl-addons-card">
+                    <div class="addons-header">
+                        <i data-lucide="plus-circle"></i>
+                        <h2>باقات الـ Home Internet الإضافية الجديدة</h2>
+                        <p>الأسعار الموضحة بالأسفل هي الأسعار النهائية بعد الضريبة</p>
+                    </div>
+                    <div class="addons-grid" id="dslAddonsGrid">
+                        <!-- Addon items will be injected by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive DSL Advisor -->
+            <div class="container">
+                <div class="dsl-advisor-card">
+                    <div class="advisor-header">
+                        <i data-lucide="sparkles"></i>
+                        <h2>مستشار باقات الإنترنت المنزلي 🧠</h2>
+                        <p>حدد ميزانية العميل القصوى أو سعة التحميل لمعرفة الباقة الأنسب</p>
+                    </div>
+                    <div class="advisor-body">
+                        <div class="advisor-inputs">
+                            <div class="adv-input-group">
+                                <label>ميزانية العميل القصوى (شاملة الضريبة)</label>
+                                <div class="adv-range-wrapper">
+                                    <input type="range" id="dslBudgetRange" min="170" max="3200" step="10" value="500">
+                                    <div class="adv-range-value"><span id="dslBudgetVal">500</span> جنيه</div>
+                                </div>
+                            </div>
+                            <div class="adv-input-group">
+                                <label>الاستهلاك المتوقع للعميل شهرياً (جيجابايت)</label>
+                                <div class="adv-range-wrapper">
+                                    <input type="range" id="dslQuotaRange" min="50" max="1500" step="50" value="200">
+                                    <div class="adv-range-value"><span id="dslQuotaVal">200</span> GB</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="advisor-result" id="dslAdvisorResult">
+                            <div class="adv-result-title">الباقة المقترحة للعميل:</div>
+                            <div class="adv-result-box">
+                                <div class="adv-plan-name" id="advDslPlanName">Home DSL 330</div>
+                                <div class="adv-plan-price" id="advDslPlanPrice">376.2 جنيه / شهرياً</div>
+                                <p class="adv-plan-desc" id="advDslPlanDesc">سرعة الباقة 30 Mbps وسعة التحميل 200 GB. السعر شامل الضريبة.</p>
+                                <div class="adv-promo-breakdown" id="advDslPromoBreakdown" style="display:none;">
+                                    <div class="promo-item">
+                                        <span>السعر في العرض (أول 6 شهور):</span>
+                                        <strong id="advPromoVal">188.1 جنيه</strong>
+                                    </div>
+                                    <div class="promo-item">
+                                        <span>التوفير الإجمالي في 6 شهور:</span>
+                                        <strong id="advPromoSavings">1128.6 جنيه</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Router Prices Section -->
+            <div class="container">
+                <div class="dsl-router-card">
+                    <div class="router-section-header">
+                        <div class="r-header-text">
+                            <i data-lucide="router"></i>
+                            <h2>دليل أسعار وأقساط أجهزة الراوتر 📟</h2>
+                            <p>تفاصيل أسعار الراوتر كاش أو قسط للعملاء الجدد والحاليين</p>
+                        </div>
+                        <!-- Interactive Customer Type Selector for Routers -->
+                        <div class="router-cust-selector">
+                            <button class="router-cust-btn active" data-cust="new">عميل جديد 🆕</button>
+                            <button class="router-cust-btn" data-cust="existing">عميل حالي 👤</button>
+                        </div>
+                    </div>
+
+                    <div class="routers-grid">
+                        <!-- Router 1: VDSL Standard -->
+                        <div class="router-item-card">
+                            <div class="router-badge">الخيار الاقتصادي</div>
+                            <div class="router-icon-wrap">
+                                <i data-lucide="router" class="r-icon"></i>
+                            </div>
+                            <h3>راوتر VDSL (Standard)</h3>
+                            <p class="router-specs">يدعم سرعات حتى 100 ميجا / تغطية WiFi قياسية</p>
+                            
+                            <div class="router-price-details">
+                                <div class="r-price-box cash">
+                                    <span class="r-label">سعر الكاش (شامل الضريبة)</span>
+                                    <div class="r-price-val">
+                                        <span class="original-price">920 ج</span>
+                                        <span class="current-price">460 ج</span>
+                                    </div>
+                                    <span class="r-discount-badge">خصم 50%</span>
+                                </div>
+                                <div class="r-price-box installment">
+                                    <span class="r-label">نظام التقسيط</span>
+                                    <div class="r-price-val">
+                                        <span class="current-price">57 ج <span>/ شهرياً</span></span>
+                                    </div>
+                                    <span class="r-duration-badge">لمدة 12 شهر (إجمالي 920 ج)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Router 2: VDSL High End -->
+                        <div class="router-item-card high-end">
+                            <div class="router-badge gold">الأعلى أداءً 🔥</div>
+                            <div class="router-icon-wrap">
+                                <i data-lucide="cpu" class="r-icon"></i>
+                            </div>
+                            <h3>راوتر VDSL (High End)</h3>
+                            <p class="router-specs">يدعم السرعات العالية جداً / يدعم الفايبر FTTH / WiFi ثنائي النطاق (Dual-Band) / تغطية ممتازة</p>
+                            
+                            <div class="router-price-details">
+                                <div class="r-price-box cash">
+                                    <span class="r-label">سعر الكاش (شامل الضريبة)</span>
+                                    <div class="r-price-val">
+                                        <span class="original-price">1,710 ج</span>
+                                        <span class="current-price" id="vdslHighEndCashPrice">855 ج</span>
+                                    </div>
+                                    <span class="r-discount-badge" id="vdslHighEndDiscountBadge">خصم 50%</span>
+                                </div>
+                                <div class="r-price-box installment">
+                                    <span class="r-label">نظام التقسيط</span>
+                                    <div class="r-price-val">
+                                        <span class="current-price">57 ج <span>/ شهرياً</span></span>
+                                    </div>
+                                    <span class="r-duration-badge">لمدة 30 شهر (إجمالي 1,710 ج)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="freemaxSection" class="tab-content">
+            <section class="hero freemax-hero-enhanced">
+                <h1>عالم <span class="gradient-text">FREEmax</span> الجديد، <br>وحدات أكتر ومميزات أكتر.</h1>
+                <p id="freemaxTagline">تصفح باقات فري ماكس الجديدة — وحدات زادت أكتر من 30% مع اشتراكات مميزة.</p>
+                
+                <div class="hero-cta-group">
+                    <button id="freemaxStartNow" class="primary-cta-btn">
+                        <i data-lucide="zap"></i>
+                        <span>ابدأ الآن</span>
+                    </button>
+                    <button id="freemaxViewPlans" class="secondary-cta-btn">
+                        <span>اكتشف الباقات</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- VIP Gift Banner -->
+            <div class="container">
+                <div class="vip-gift-banner">
+                    <div class="vip-glow"></div>
+                    <div class="vip-content">
+                        <div class="vip-icon">
+                            <span class="animated-gift">🎁</span>
+                        </div>
+                        <div class="vip-text">
+                            <h3>مبروك يا مميز! 🎉</h3>
+                            <p>عشان انتم عملاء VIP، ليك 2 جيجا إنترنت هدية بمجرد ما تجدد باقتك النهاردة من على الموقع!</p>
+                        </div>
+                        <div class="vip-badge">VIP OFFER</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendation Wizard Section -->
+            <div class="container">
+                <div class="freemax-wizard-card" id="freemaxWizard">
+                    <div class="wizard-header">
+                        <i data-lucide="sparkles" class="wizard-spark"></i>
+                        <h2>رشحلي باقتي</h2>
+                        <p>دخل استهلاكك الشهري وهنقولك أنسب باقة فري ماكس ليك</p>
+                    </div>
+
+                    <div class="wizard-body">
+                        <div class="wizard-inputs-row">
+                            <div class="wizard-input-group">
+                                <label>استهلاك الإنترنت (ميجابايت)</label>
+                                <div class="wizard-range-wrapper">
+                                    <input type="range" id="usageInternetRange" min="0" max="25000" step="500" value="3000">
+                                    <div class="range-value"><span id="usageInternetVal">3,000</span> ميجا</div>
+                                </div>
+                            </div>
+
+                            <div class="wizard-input-group">
+                                <label>استهلاك الدقائق (دقيقة)</label>
+                                <div class="wizard-range-wrapper">
+                                    <input type="range" id="usageMinutesRange" min="0" max="5000" step="100" value="500">
+                                    <div class="range-value"><span id="usageMinutesVal">500</span> دقيقة</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="wizard-input-group">
+                            <label>ميزانيتك القصوى كام؟</label>
+                            <div class="wizard-budget-chips" id="budgetChips">
+                                <button class="budget-chip" data-budget="52">52 ج</button>
+                                <button class="budget-chip active" data-budget="80">80 ج</button>
+                                <button class="budget-chip" data-budget="115">115 ج</button>
+                                <button class="budget-chip" data-budget="175">175 ج</button>
+                                <button class="budget-chip" data-budget="230">230 ج</button>
+                                <button class="budget-chip" data-budget="345">345+ ج</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wizard-result" id="wizardResult">
+                        <div class="result-label">أنسب باقة لاحتياجاتك هي:</div>
+                        <div class="result-plan-box">
+                            <div class="result-plan-name" id="resPlanName">فري ماكس 80</div>
+                            <div class="result-plan-detail" id="resPlanDetail">دي أكبر باقة في ميزانيتك (2,900 وحدة). عشان تغطي استهلاكك (3,500)، الأنسب ليك فري ماكس 115 بتديلك 4,900 وحدة وتجديدها بـ 164.29 ج.</div>
+                        </div>
+                        <div class="result-actions">
+                            <button class="result-cta-btn" onclick="document.getElementById('freemaxContainer').scrollIntoView({behavior:'smooth'})">شوف باقي الباقات</button>
+                            <a href="tel:%230%23" class="result-sub-btn">تجديد فوراً <i data-lucide="phone"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recharge Calculator Widget -->
+            <div class="container">
+                <div class="recharge-calc-card">
+                    <div class="recharge-calc-header">
+                        <div class="calc-title">
+                            <i data-lucide="calculator"></i>
+                            <span>حاسبة شحن الرصيد</span>
+                        </div>
+                        <button class="calc-mode-switch" id="toggleRechargeMode">
+                            <i data-lucide="repeat"></i>
+                            تبديل الوضع
+                        </button>
+                    </div>
+
+                    <div class="recharge-inputs-wrapper" id="rechargeInputs">
+                        <!-- Mode 1: Paid -> Balance -->
+                        <div class="recharge-input-group" id="modePaidToBalance">
+                            <div class="input-side">
+                                <label>هتدفع كام؟ (شحن)</label>
+                                <div class="input-with-label">
+                                    <input type="number" id="inputPaidAmount" placeholder="0.00" step="0.5">
+                                    <span>EGP</span>
+                                </div>
+                            </div>
+                            <div class="arrow-between">
+                                <i data-lucide="arrow-left-right"></i>
+                            </div>
+                            <div class="input-side highlight">
+                                <label>هيوصلك كام؟ (رصيد)</label>
+                                <div class="input-with-label">
+                                    <input type="number" id="outputCreditAmount" placeholder="0.00" readonly>
+                                    <span>Credit</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mode 2: Balance -> Paid (Hidden by default) -->
+                        <div class="recharge-input-group" id="modeBalanceToPaid" style="display:none;">
+                            <div class="input-side">
+                                <label>عوز رصيد كام؟</label>
+                                <div class="input-with-label">
+                                    <input type="number" id="inputRequiredCredit" placeholder="0.00" step="0.5">
+                                    <span>Credit</span>
+                                </div>
+                            </div>
+                            <div class="arrow-between">
+                                <i data-lucide="arrow-left-right"></i>
+                            </div>
+                            <div class="input-side highlight">
+                                <label>تدفع كام للمحل؟</label>
+                                <div class="input-with-label">
+                                    <input type="number" id="outputRequiredPayment" placeholder="0.00" readonly>
+                                    <span>EGP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calc-presets">
+                        <span>مبالغ شائعة:</span>
+                        <div class="preset-chips">
+                            <button class="preset-chip" data-val="10">10</button>
+                            <button class="preset-chip" data-val="50">50</button>
+                            <button class="preset-chip" data-val="100">100</button>
+                            <button class="preset-chip" data-val="200">200</button>
+                        </div>
+                    </div>
+
+                    <div class="calc-notice">
+                        <i data-lucide="info"></i>
+                        <span>يتم خصم 30% من قيمة الشحن كضريبة ومصاريف إدارية (المعادلة: الرصيد = الشحن × 0.70)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights / Why Freemax -->
+            <div class="container mobile-flush">
+                <div class="freemax-highlights-grid" id="freemaxHighlights">
+                    <!-- Dynamic Highlights -->
+                </div>
+            </div>
+
+            <!-- Global Perks (Brands) -->
+            <div class="container">
+                <div class="freemax-perks-wrapper" id="freemaxPerks">
+                    <!-- Dynamic Perks -->
+                </div>
+            </div>
+
+            <!-- Main Plans Grid -->
+            <div id="freemaxContainer" class="container">
+                <!-- Freemax Plans will be injected here -->
+            </div>
+
+            <!-- Weekly Plan Section -->
+            <div class="container">
+                <div id="freemaxWeeklyContainer">
+                    <!-- Weekly Plan will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TARGET TRACKER TAB ===== -->
+        <section id="trackerSection" class="tab-content tracker-tab">
+            <div class="tracker-header">
+                <div class="tracker-title-group">
+                    <h2>أداء التارجت اليومي</h2>
+                    <span id="trackerDateBadge" class="tracker-date-badge">—</span>
+                </div>
+                <div class="tracker-header-actions">
+                    <button id="shareTrackerBtn" class="tracker-share-btn">
+                        <i data-lucide="share-2"></i> مشاركة
+                    </button>
+                    <button id="resetTrackerBtn" class="tracker-reset-btn">
+                        <i data-lucide="refresh-ccw"></i> شفت جديد
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero KPI Gauge -->
+            <div class="hero-gauge-container">
+                <div class="gauge-ring">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="gauge-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="gauge-fill" id="kpiGaugeFill" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="283"></circle>
+                    </svg>
+                    <div class="gauge-center">
+                        <span id="kpiTotalValue">0</span>%
+                        <small>Total KPI</small>
+                    </div>
+                </div>
+                <div id="kpiAlertMessage" class="kpi-alert-msg" style="display: none;"></div>
+                <div id="kpiAchievedCounter" class="kpi-achieved-counter">0 / 7 مؤشرات محققة</div>
+            </div>
+
+            <!-- Interactive SVG Progress Chart -->
+            <div class="tracker-chart-card">
+                <div class="chart-header">
+                    <div class="chart-header-title">
+                        <i data-lucide="bar-chart-3"></i>
+                        <h3>مخطط تحقيق مؤشرات الأداء</h3>
+                    </div>
+                    <span class="chart-subtitle">رسم بياني تفاعلي يوضح نسبة إنجاز كل مؤشر (اضغط أو مرر للتحليل)</span>
+                </div>
+                <div class="chart-body-wrapper">
+                    <div class="svg-chart-container" style="width: 100%; overflow: hidden;">
+                        <svg id="kpiTrendChart" class="svg-progress-chart" style="width: 100%; height: auto; display: block; min-width: 0 !important;"></svg>
+                    </div>
+                    <div id="chartTooltip" class="chart-tooltip" style="opacity: 0; pointer-events: none;"></div>
+                </div>
+            </div>
+
+            <!-- Tracker Inputs Grid -->
+            <div class="tracker-grid">
+                <!-- Javascript will inject inputs here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Detailed View Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">
+                <i data-lucide="x"></i>
+            </button>
+            <div id="modalBody">
+                <!-- Data will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Orange Egypt - للاستخدام الداخلي فقط</p>
+            <div class="signature">
+                <div class="developer-info">
+                    Developed by <strong>Mohamed issa</strong> <span class="wolf-icon">🐺</span>
+                </div>
+                <a href="https://wa.me/201205979779" target="_blank" class="whatsapp-link"
+                    aria-label="تواصل عبر الواتساب" title="تواصل عبر الواتساب">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                        </path>
+                    </svg>
+                    <span>للتواصل أو الاقتراحات</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ===== SR ASSISTANT ===== -->
+    <!-- Chat Button (FAB) -->
+    <div id="srAssistantFab" class="sr-assistant-fab" aria-label="SR Assistant" title="تحدث مع مساعد SR">
+        <div class="fab-orb"></div>
+        <i data-lucide="bot"></i>
+    </div>
+
+    <!-- Chat Window -->
+    <div id="srAssistantWindow" class="sr-assistant-window">
+        <div class="assistant-header">
+            <div class="assistant-info">
+                <div class="assistant-avatar">
+                    <i data-lucide="zap"></i>
+                    <div class="online-indicator"></div>
+                </div>
+                <div class="assistant-name">
+                    <h3>Orange Expert</h3>
+                    <span>🟢 زميلك في الفرع جاهز</span>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <button id="soundAssistantBtn" class="sound-toggle" title="تفعيل/كتم الصوت">
+                    <i data-lucide="volume-2"></i>
+                </button>
+                <button id="closeAssistantBtn" class="close-assistant">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="assistantMessages" class="assistant-messages">
+            <!-- Messages go here -->
+        </div>
+
+        <div id="assistantQuickBubbles" class="quick-bubbles">
+            <!-- Bubbles injected via JS -->
+        </div>
+
+        <div class="assistant-input-area">
+            <input type="text" id="assistantInput" placeholder="اكتب سؤالك هنا..." autocomplete="off">
+            <button id="micAssistantBtn" class="mic-btn" title="تحدث بالصوت">
+                <i data-lucide="mic"></i>
+            </button>
+            <button id="sendAssistantBtn" class="send-btn">
+                <i data-lucide="send"></i>
+            </button>
+        </div>
+    </div>
+    <!-- ===== END SR ASSISTANT ===== -->
+
+    <!-- PWA Install Banner -->
+    <div id="pwaInstallBanner" class="pwa-install-banner">
+        <div class="pwa-content">
+            <div class="pwa-icon"><i data-lucide="download"></i></div>
+            <div class="pwa-text">
+                <b>ثبت الموسوعة على موبايلك</b>
+                <span>وصول أسرع واستخدام بدون إنترنت</span>
+            </div>
+        </div>
+        <div class="pwa-actions">
+            <button id="pwaInstallBtn" class="pwa-btn-main">تثبيت</button>
+            <button id="pwaCloseBanner" class="pwa-btn-close"><i data-lucide="x"></i></button>
+        </div>
+    </div>
+
+    <script src="data.js" defer></script>
+    <script src="hunts.js" defer></script>
+    <script src="emails.js" defer></script>
+    <script src="plans.js" defer></script>
+    <script src="docs.js" defer></script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-top-btn" title="رجوع للأعلى">
+        <i data-lucide="chevron-up"></i>
+    </button>
+
+    <script src="freemax.js" defer></script>
+    <script src="assistant.js" defer></script>
+    <script src="app.js" defer></script>
+    <script src="calculators.js" defer></script>
+    <script src="tracker.js" defer></script>
+
+    <script>
+        // PWA Service Worker Registration with Update Detection
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => {
+                        console.log('Service Worker registered!');
+                        
+                        // Check for updates
+                        reg.addEventListener('updatefound', () => {
+                            const newWorker = reg.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    showUpdateToast();
+                                }
+                            });
+                        });
+                    })
+                    .catch(err => console.log('Service Worker failed:', err));
+            });
+        }
+
+        function showUpdateToast() {
+            // Check if toast already exists
+            if (document.querySelector('.update-toast')) return;
+
+            const toast = document.createElement('div');
+            toast.className = 'update-toast';
+            toast.innerHTML = `
+                <div class="update-toast-content">
+                    <i data-lucide="refresh-cw" class="spin-icon"></i>
+                    <span>فيه تحديث جديد نزل! 🚀</span>
+                    <button onclick="window.location.reload()">تحديث الآن</button>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            lucide.createIcons();
+            
+            // Trigger animation
+            setTimeout(() => toast.classList.add('active'), 100);
+        }
+    </script>
+
+    <nav class="bottom-tab-bar" id="bottomTabBar">
+        <div class="tab-indicator"></div>
+        <button class="tab-btn active" data-nav="home">
+            <i data-lucide="home"></i>
+            <span>الرئيسية</span>
+        </button>
+        <button class="tab-btn" data-nav="tracker">
+            <i data-lucide="target"></i>
+            <span>المتتبع</span>
+        </button>
+    </nav>
+
+    <!-- Offline UI Toast -->
+    <div id="offlineToast" class="offline-toast" style="display: none;">
+        <i data-lucide="wifi-off"></i>
+        <span>أنت حالياً غير متصل بالإنترنت. (الوضع الاوفلاين نشط)</span>
+    </div>
+</body>
+
+</html>
