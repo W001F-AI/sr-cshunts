@@ -1,5 +1,13 @@
 window.ORANGE_SR_DATA = [
   {
+    "id": "4195",
+    "title": "Orange Cash - Electricity Recharge",
+    "titleAr": "شحن كروت الكهرباء عن طريق أورانج كاش",
+    "description": "SR خاص بشحن كروت الكهرباء من خلال محفظة أورانج كاش.",
+    "category": "Orange Cash",
+    "steps": "SR خاص بشحن كروت الكهرباء من خلال محفظة أورانج كاش."
+  },
+  {
     "id": "11102 / 11309",
     "title": "CNAM FEATURE",
     "titleAr": "إظهار اسم المتصل",

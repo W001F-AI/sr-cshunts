@@ -21,10 +21,10 @@ window.ORANGE_DOCS_DATA = [
     "color": "#10b981"
   },
   {
-    "title": "إقرار 10 خطوط (Termination)",
-    "description": "نموذج إقرار إلغاء أو إنهاء تعاقد خاص بعدد 10 خطوط للعميل",
-    "url": "https://www.dropbox.com/scl/fi/guuj8w675h3ijc1usfvx2/10.pdf?rlkey=7zbwvocaorto1lr25tin2p9vq&raw=1",
-    "icon": "file-text",
+    "title": "استمارة عدم حيازة (421010)",
+    "description": "نموذج إقرار عدم الحيازة (421010) لطباعته وتوقيعه من قِبل العميل",
+    "url": "https://www.dropbox.com/scl/fi/snqnga6fkzr2px8hqu14i/17-2026-Updated.docx?rlkey=t3f6rh7vcyivi0445w8qw2gbn&st=fbk5z09j&dl=1",
+    "icon": "file-minus",
     "color": "#ef4444"
   },
   {
