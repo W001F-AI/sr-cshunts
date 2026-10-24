@@ -5808,7 +5808,7 @@ mark.search-highlight {
         font-size: 1.1rem !important;
     }
 
-    .feature-list {
+    .feature-list:not(.premier-specs-grid) {
         display: grid !important;
         grid-template-columns: 1fr !important;
         gap: 6px !important;
@@ -8410,77 +8410,298 @@ body.pview-managed .premier-sub-view.active,
     }
 }
 
+/* Base styles for Mobile Glowing Premier Dropdown Picker */
+.premier-mobile-picker-wrap {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 8px auto 16px;
+    width: 100%;
+    max-width: 330px;
+    position: relative;
+    z-index: 10;
+}
+
+.picker-crown-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, rgba(255, 121, 0, 0.25), rgba(234, 179, 8, 0.2));
+    border: 1px solid rgba(255, 180, 0, 0.45);
+    border-radius: 50px;
+    padding: 4px 14px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #ffb738;
+    margin-bottom: 8px;
+    box-shadow: 0 0 15px rgba(255, 121, 0, 0.35);
+    font-family: 'Cairo', sans-serif;
+    letter-spacing: 0.3px;
+}
+
+.picker-crown-tag i {
+    width: 14px;
+    height: 14px;
+    color: #facc15;
+    filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.9));
+}
+
+.picker-select-box {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, rgba(32, 34, 48, 0.95), rgba(18, 20, 32, 0.98));
+    border: 1.5px solid rgba(255, 121, 0, 0.55);
+    border-radius: 14px;
+    box-shadow: 0 0 25px rgba(255, 121, 0, 0.22), 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+}
+
+.picker-select-box:focus-within {
+    border-color: #ff7900;
+    box-shadow: 0 0 35px rgba(255, 121, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.picker-sparkle-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 17px;
+    height: 17px;
+    color: #ff9b3d;
+    pointer-events: none;
+    filter: drop-shadow(0 0 4px rgba(255, 121, 0, 0.6));
+}
+
+.picker-arrow-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: var(--primary);
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+.premier-mobile-select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 12px 38px 12px 36px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    border-radius: 14px;
+    text-align: right;
+    direction: rtl;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.premier-mobile-select option {
+    background: #181a28;
+    color: #ffffff;
+    font-size: 0.88rem;
+    padding: 10px;
+}
+
 @media (max-width: 768px) {
+    /* Hide swipeable pills on mobile in favor of glowing dropdown */
     .premier-quick-nav {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        gap: 8px;
-        padding: 6px 4px 14px;
-        margin: 10px 0 20px;
-        justify-content: flex-start;
+        display: none !important;
     }
 
-    .premier-quick-nav::-webkit-scrollbar {
-        display: none;
+    /* Show glowing centered dropdown picker */
+    .premier-mobile-picker-wrap {
+        display: flex !important;
     }
 
-    .p-nav-pill {
-        white-space: nowrap;
-        flex-shrink: 0;
-        font-size: 0.8rem;
-        padding: 8px 14px;
+    /* Hero section font sizing & spacing cleanup on mobile */
+    .hero {
+        padding: 22px 12px 10px !important;
+        margin-bottom: 0 !important;
     }
 
+    .hero-badge {
+        margin-bottom: 6px !important;
+        font-size: 0.72rem !important;
+        padding: 3px 10px !important;
+    }
+
+    .hero h1 {
+        font-size: 1.45rem !important;
+        line-height: 1.35 !important;
+        margin-bottom: 6px !important;
+    }
+
+    .hero p {
+        font-size: 0.78rem !important;
+        line-height: 1.45 !important;
+        margin: 0 auto 8px !important;
+        color: rgba(255, 255, 255, 0.72) !important;
+        max-width: 95% !important;
+    }
+
+    /* Plan cards mobile spacing & typography */
+    .plan-card {
+        padding: 16px 14px !important;
+        border-radius: 18px !important;
+        margin-bottom: 14px !important;
+    }
+
+    .plan-header {
+        margin-bottom: 10px !important;
+    }
+
+    .plan-name {
+        font-size: 1.15rem !important;
+        margin-bottom: 3px !important;
+    }
+
+    .plan-price {
+        font-size: 0.95rem !important;
+    }
+
+    .plan-savings-pill {
+        font-size: 0.7rem !important;
+        padding: 3px 8px !important;
+        margin-top: 4px !important;
+    }
+
+    .plan-metrics {
+        gap: 8px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .metric-item {
+        padding: 8px 6px !important;
+        border-radius: 10px !important;
+    }
+
+    .metric-value {
+        font-size: 1.15rem !important;
+    }
+
+    .metric-label {
+        font-size: 0.65rem !important;
+        margin-top: 2px !important;
+    }
+
+    /* Fix Premier Specs Grid to stay 2-columns on mobile */
+    .premier-specs-grid,
+    .feature-list.premier-specs-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px 8px !important;
+    }
+
+    .premier-specs-grid .feature-item {
+        padding: 6px 8px !important;
+        font-size: 0.74rem !important;
+        min-height: 32px !important;
+        border-radius: 8px !important;
+        gap: 6px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .premier-specs-grid .feature-item.span-full {
+        grid-column: 1 / -1 !important;
+    }
+
+    /* Value for Money Card mobile spacing */
     .vfm-wrapper,
     .insurance-wrapper {
-        padding: 20px 14px !important;
-        border-radius: 18px !important;
-        margin: 18px 0 !important;
+        padding: 16px 12px !important;
+        border-radius: 16px !important;
+        margin: 12px 0 !important;
         background: #181a28 !important; /* Solid background on mobile - no blur crash */
     }
 
+    .vfm-header {
+        margin-bottom: 14px !important;
+    }
+
     .vfm-header h2 {
-        font-size: 1.3rem;
+        font-size: 1.15rem !important;
+        margin-bottom: 4px !important;
     }
 
     .vfm-header p {
-        font-size: 0.85rem;
+        font-size: 0.76rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 12px !important;
+    }
+
+    .vfm-badge {
+        font-size: 0.72rem !important;
+        padding: 3px 10px !important;
+        margin-bottom: 6px !important;
     }
 
     .vfm-cards-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
     }
 
     .vfm-tier-card {
-        padding: 16px;
+        padding: 12px 14px !important;
+        border-radius: 12px !important;
+    }
+
+    .vfm-tier-name {
+        font-size: 0.95rem !important;
+    }
+
+    .vfm-tier-price {
+        font-size: 0.82rem !important;
+    }
+
+    .vfm-tier-savings .savings-amount {
+        font-size: 1.15rem !important;
+    }
+
+    .vfm-tier-savings .savings-label {
+        font-size: 0.68rem !important;
     }
 
     .vfm-toggle-btn {
-        width: 100%;
-        justify-content: center;
-        font-size: 0.85rem;
-        padding: 10px 14px;
+        width: 100% !important;
+        justify-content: center !important;
+        font-size: 0.82rem !important;
+        padding: 9px 12px !important;
     }
 
+    /* Insurance Card mobile spacing */
     .insurance-header {
-        gap: 12px;
-        margin-bottom: 18px;
+        gap: 8px !important;
+        margin-bottom: 14px !important;
     }
 
     .insurance-header h2 {
-        font-size: 1.25rem;
+        font-size: 1.15rem !important;
+    }
+
+    .insurance-header p {
+        font-size: 0.76rem !important;
     }
 
     .ins-hero-banner {
-        padding: 20px 16px;
+        padding: 16px 12px !important;
+        border-radius: 14px !important;
     }
 
     .ins-big-number {
-        font-size: 3.6rem;
+        font-size: 2.8rem !important;
     }
 
     .ins-calc-input {
@@ -8488,7 +8709,8 @@ body.pview-managed .premier-sub-view.active,
     }
 
     .ins-preset-btn {
-        touch-action: manipulation;
-        padding: 8px 10px;
+        touch-action: manipulation !important;
+        padding: 7px 10px !important;
+        font-size: 0.74rem !important;
     }
 }

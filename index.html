@@ -383,7 +383,7 @@
                 <p>استعرض تفاصيل أرقى الباقات، قيمة التوفير والاشتراكات المجانية الحصرية (تصل إلى 6,090 ج.م شهرياً)، وخدمة تأمين الأجهزة في مكان واحد.</p>
             </section>
 
-            <!-- Premier Section Sub-Navigation Tabs -->
+            <!-- Premier Section Sub-Navigation Tabs (Desktop) -->
             <div class="premier-quick-nav" id="premierSubNav">
                 <button type="button" class="p-nav-pill active" data-subview-target="plans">
                     <i data-lucide="layers"></i>
@@ -405,6 +405,25 @@
                     <i data-lucide="layout-grid"></i>
                     <span>عرض الكل</span>
                 </button>
+            </div>
+
+            <!-- Mobile Glowing Premier Dropdown Selector -->
+            <div class="premier-mobile-picker-wrap" id="premierMobileNav">
+                <div class="picker-crown-tag">
+                    <i data-lucide="crown"></i>
+                    <span>أقسام باقات PREMIER</span>
+                </div>
+                <div class="picker-select-box">
+                    <i data-lucide="sparkles" class="picker-sparkle-icon"></i>
+                    <select id="premierMobileViewSelect" class="premier-mobile-select" aria-label="اختر قسم PREMIER">
+                        <option value="plans" selected>👑 باقات PREMIER والتوفير (Value for Money)</option>
+                        <option value="insurance">🛡️ تأمين الأجهزة (Insurance 0.025%)</option>
+                        <option value="calc">🧮 حاسبة الفواتير والضريبة</option>
+                        <option value="notice">📋 شروط التفعيل والإثباتات</option>
+                        <option value="all">📑 عرض كافة الأقسام معاً</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="picker-arrow-icon"></i>
+                </div>
             </div>
 
             <!-- SUBVIEW 1: PLANS & VALUE FOR MONEY (DEFAULT) -->

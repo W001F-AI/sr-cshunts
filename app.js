@@ -947,35 +947,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.animationDelay = `${index * 0.1}s`;
                 
                 let metricsHTML = '';
-                if (plan.minutes) metricsHTML += `<div class="metric-item"><span class="metric-value">${plan.minutes}</span><span class="metric-label">Min</span></div>`;
-                if (plan.data) metricsHTML += `<div class="metric-item"><span class="metric-value">${plan.data}</span><span class="metric-label">Data</span></div>`;
-                if (plan.units) metricsHTML += `<div class="metric-item"><span class="metric-value">${plan.units}</span><span class="metric-label">Units</span></div>`;
-                if (plan.internet) metricsHTML += `<div class="metric-item"><span class="metric-value">${plan.internet}</span><span class="metric-label">Net</span></div>`;
+                if (plan.minutes) metricsHTML += `<div class="metric-item"><span class="metric-value" dir="ltr">${plan.minutes}</span><span class="metric-label">Min</span></div>`;
+                if (plan.data) metricsHTML += `<div class="metric-item"><span class="metric-value" dir="ltr">${plan.data}</span><span class="metric-label">Data</span></div>`;
+                if (plan.units) metricsHTML += `<div class="metric-item"><span class="metric-value" dir="ltr">${plan.units}</span><span class="metric-label">Units</span></div>`;
+                if (plan.internet) metricsHTML += `<div class="metric-item"><span class="metric-value" dir="ltr">${plan.internet}</span><span class="metric-label">Net</span></div>`;
 
                 let featuresHTML = '';
                 const isPremier = category.category === 'Orange Premier';
 
                 if (isPremier) {
                     if (plan.familyLines && plan.familyLines !== '-') {
-                        featuresHTML += `<li class="feature-item"><i data-lucide="users"></i> <span>العائلة: <strong>${plan.familyLines} خطوط</strong></span></li>`;
+                        featuresHTML += `<li class="feature-item"><i data-lucide="users"></i> <span>العائلة: <strong dir="ltr">${plan.familyLines} خطوط</strong></span></li>`;
                     }
                     if (plan.adslDiscount && plan.adslDiscount !== '-') {
-                        featuresHTML += `<li class="feature-item"><i data-lucide="wifi"></i> <span>خصم نت: <strong>${plan.adslDiscount} ج</strong></span></li>`;
+                        featuresHTML += `<li class="feature-item"><i data-lucide="wifi"></i> <span>خصم نت: <strong dir="ltr">${plan.adslDiscount} ج</strong></span></li>`;
                     }
                     if (plan.hwDiscount && plan.hwDiscount !== '-') {
-                        featuresHTML += `<li class="feature-item"><i data-lucide="smartphone"></i> <span>خصم جهاز: <strong>${plan.hwDiscount} ج</strong></span></li>`;
+                        featuresHTML += `<li class="feature-item"><i data-lucide="smartphone"></i> <span>خصم جهاز: <strong dir="ltr">${plan.hwDiscount} ج</strong></span></li>`;
                     }
                     if (plan.intlMinutes && plan.intlMinutes !== '-') {
-                        featuresHTML += `<li class="feature-item"><i data-lucide="globe"></i> <span>دولي: <strong>${plan.intlMinutes}</strong></span></li>`;
+                        featuresHTML += `<li class="feature-item"><i data-lucide="globe"></i> <span>دولي: <strong dir="ltr">${plan.intlMinutes}</strong></span></li>`;
                     }
                     if (plan.installment && plan.installment !== '-') {
-                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="credit-card"></i> <span>التقسيط: <strong>${plan.installment}</strong></span></li>`;
+                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="credit-card"></i> <span>التقسيط: <strong dir="ltr">${plan.installment}</strong></span></li>`;
                     }
                     if (plan.dataRoaming && plan.dataRoaming !== '-') {
-                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="plane"></i> <span>التجوال: <strong>${plan.dataRoaming}</strong></span></li>`;
+                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="plane"></i> <span>التجوال: <strong dir="ltr">${plan.dataRoaming}</strong></span></li>`;
                     }
                     if (plan.afterFinish) {
-                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="alert-circle"></i> <span>${plan.afterFinish}</span></li>`;
+                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="alert-circle"></i> <span dir="ltr">${plan.afterFinish}</span></li>`;
                     }
                 } else {
                     if (plan.familyLines && plan.familyLines !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="users"></i> Family Lines: ${plan.familyLines}</li>`;

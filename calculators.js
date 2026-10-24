@@ -273,7 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const subViews = document.querySelectorAll('.premier-sub-view');
         const premierSection = document.getElementById('premierSection');
 
-        if (navPills.length && subViews.length) {
+        const mobileSelect = document.getElementById('premierMobileViewSelect');
+
+        if (subViews.length && (navPills.length || mobileSelect)) {
             document.body.classList.add('pview-managed');
 
             function switchSubView(viewKey) {
@@ -281,6 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const isTarget = p.getAttribute('data-subview-target') === viewKey;
                     p.classList.toggle('active', isTarget);
                 });
+
+                if (mobileSelect && mobileSelect.value !== viewKey) {
+                    mobileSelect.value = viewKey;
+                }
 
                 if (viewKey === 'all') {
                     subViews.forEach(v => v.classList.add('active'));
@@ -304,6 +310,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (targetView) switchSubView(targetView);
                 });
             });
+
+            if (mobileSelect) {
+                mobileSelect.addEventListener('change', (e) => {
+                    const targetView = e.target.value;
+                    if (targetView) switchSubView(targetView);
+                });
+            }
         }
     }
 
