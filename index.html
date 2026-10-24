@@ -1610,8 +1610,11 @@
                     <button onclick="window.location.reload()">تحديث الآن</button>
                 </div>
             `;
-            document.body.appendChild(toast);
-            lucide.createIcons();
+            if (window.safeRenderIcons) {
+                window.safeRenderIcons();
+            } else if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
             
             // Trigger animation
             setTimeout(() => toast.classList.add('active'), 100);

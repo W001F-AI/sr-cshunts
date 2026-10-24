@@ -331,13 +331,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!priceInput || !feeOutput) return;
 
         function updateFee() {
-            const price = parseFloat(priceInput.value) || 0;
+            let price = parseFloat(priceInput.value);
+            if (isNaN(price) || price <= 0) {
+                feeOutput.textContent = '0.00 ج.م';
+                return;
+            }
             // Insurance fee = 0.025% of device price = price * (0.025 / 100) = price * 0.00025
             const fee = price * 0.00025;
             feeOutput.textContent = fee.toLocaleString('ar-EG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
         }
 
-        priceInput.addEventListener('input', updateFee);
+        priceInput.addEventListener('input', () => {
+            const currentVal = (priceInput.value || '').trim();
+            presetBtns.forEach(b => {
+                b.classList.toggle('active', b.getAttribute('data-price') === currentVal);
+            });
+            updateFee();
+        });
 
         presetBtns.forEach(btn => {
             btn.addEventListener('click', () => {
