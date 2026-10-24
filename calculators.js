@@ -242,5 +242,103 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ============================================
+    // PREMIER VALUE FOR MONEY INTERACTIONS
+    // ============================================
+    function initPremierVfm() {
+        const toggleBtn = document.getElementById('vfmToggleTableBtn');
+        const tableWrapper = document.getElementById('vfmFullTableWrapper');
+        const toggleIcon = document.getElementById('vfmToggleIcon');
+
+        if (toggleBtn && tableWrapper) {
+            toggleBtn.addEventListener('click', () => {
+                const isHidden = tableWrapper.style.display === 'none' || tableWrapper.style.display === '';
+                tableWrapper.style.display = isHidden ? 'block' : 'none';
+                if (toggleIcon) {
+                    toggleIcon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+                const span = toggleBtn.querySelector('span');
+                if (span) {
+                    span.textContent = isHidden 
+                        ? 'إخفاء جدول تفكيك الخدمات الـ 9' 
+                        : 'عرض جدول تفكيك الخدمات الـ 9 بالكامل وقيمتها المالية';
+                }
+                if (window.safeRenderIcons) window.safeRenderIcons();
+                if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(8);
+            });
+        }
+
+        // Sub-tabs switching between Premier views (Plans, Insurance, Calc, Notice, All)
+        const navPills = document.querySelectorAll('.premier-quick-nav .p-nav-pill');
+        const subViews = document.querySelectorAll('.premier-sub-view');
+        const premierSection = document.getElementById('premierSection');
+
+        if (navPills.length && subViews.length) {
+            document.body.classList.add('pview-managed');
+
+            function switchSubView(viewKey) {
+                navPills.forEach(p => {
+                    const isTarget = p.getAttribute('data-subview-target') === viewKey;
+                    p.classList.toggle('active', isTarget);
+                });
+
+                if (viewKey === 'all') {
+                    subViews.forEach(v => v.classList.add('active'));
+                    if (premierSection) premierSection.classList.add('show-all');
+                } else {
+                    if (premierSection) premierSection.classList.remove('show-all');
+                    subViews.forEach(v => {
+                        const matches = v.getAttribute('data-subview') === viewKey;
+                        v.classList.toggle('active', matches);
+                    });
+                }
+
+                if (window.safeRenderIcons) window.safeRenderIcons();
+                if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(6);
+            }
+
+            navPills.forEach(pill => {
+                pill.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetView = pill.getAttribute('data-subview-target');
+                    if (targetView) switchSubView(targetView);
+                });
+            });
+        }
+    }
+
+    // ============================================
+    // ORANGE DEVICE INSURANCE CALCULATOR
+    // ============================================
+    function initDeviceInsuranceCalc() {
+        const priceInput = document.getElementById('insDevicePrice');
+        const feeOutput = document.getElementById('insCalculatedFee');
+        const presetBtns = document.querySelectorAll('.ins-preset-btn');
+
+        if (!priceInput || !feeOutput) return;
+
+        function updateFee() {
+            const price = parseFloat(priceInput.value) || 0;
+            // Insurance fee = 0.025% of device price = price * (0.025 / 100) = price * 0.00025
+            const fee = price * 0.00025;
+            feeOutput.textContent = fee.toLocaleString('ar-EG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+        }
+
+        priceInput.addEventListener('input', updateFee);
+
+        presetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const val = btn.getAttribute('data-price');
+                priceInput.value = val;
+                presetBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                updateFee();
+                if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(6);
+            });
+        });
+    }
+
     initRechargeCalc();
+    initPremierVfm();
+    initDeviceInsuranceCalc();
 });

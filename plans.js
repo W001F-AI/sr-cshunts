@@ -4,6 +4,7 @@ window.ORANGE_PLANS_DATA = [
     "plans": [
       {
         "name": "PREMIER Lite",
+        "basePrice": "520",
         "minutes": "2500",
         "data": "15 GB",
         "familyLines": "1",
@@ -12,14 +13,19 @@ window.ORANGE_PLANS_DATA = [
         "dataRoaming": "1 GB Weekly (2 times a year)",
         "intlMinutes": "-",
         "installment": "Up to 30000 L.E",
+        "savings": "3,110 ج.م توفير شهري",
         "subscriptions": [
-          "Spotify",
-          "Amazon Prime"
+          "Amazon Prime",
+          "Spotify Premium",
+          "London Cab (20%)",
+          "Sixt (15%)",
+          "فنادق الجونة (15%)"
         ],
         "fees": "652 L.E"
       },
       {
         "name": "PREMIER Plus",
+        "basePrice": "690",
         "minutes": "3500",
         "data": "20 GB",
         "familyLines": "2",
@@ -28,14 +34,20 @@ window.ORANGE_PLANS_DATA = [
         "dataRoaming": "1.5 GB Weekly (2 times a year)",
         "intlMinutes": "15 MIN",
         "installment": "Up to 45000 L.E",
+        "savings": "3,360 ج.م توفير شهري",
         "subscriptions": [
-          "Spotify",
-          "Amazon Prime"
+          "Amazon Prime",
+          "Spotify Premium",
+          "London Cab (20%)",
+          "Sixt (15%)",
+          "فنادق الجونة (15%)",
+          "Gourmet (خصم)"
         ],
         "fees": "861 L.E"
       },
       {
         "name": "PREMIER Select",
+        "basePrice": "820",
         "minutes": "5000",
         "data": "25 GB",
         "familyLines": "3",
@@ -44,16 +56,23 @@ window.ORANGE_PLANS_DATA = [
         "dataRoaming": "10 GB Weekly (1 time a year)",
         "intlMinutes": "30 MIN",
         "installment": "Up to 50000 L.E",
+        "savings": "4,424 ج.م توفير شهري",
         "subscriptions": [
-          "Spotify",
           "Amazon Prime",
-          "Gourmet food",
-          "TOD (3 months)"
+          "Spotify Premium",
+          "TOD (3 شهور)",
+          "YouTube Premium",
+          "London Cab (20%)",
+          "Sixt (15%)",
+          "فنادق الجونة (15%)",
+          "Gourmet (خصم)",
+          "EgyptAir (أميال)"
         ],
-        "fees": "1070 L.E"
+        "fees": "1021 L.E"
       },
       {
         "name": "PREMIER Ultra",
+        "basePrice": "1200",
         "minutes": "7000",
         "data": "40 GB",
         "familyLines": "4",
@@ -62,16 +81,23 @@ window.ORANGE_PLANS_DATA = [
         "dataRoaming": "10 GB Weekly (2 times a year)",
         "intlMinutes": "45 MIN",
         "installment": "Up to 60000 L.E",
+        "savings": "5,424 ج.م توفير شهري",
         "subscriptions": [
-          "Spotify",
           "Amazon Prime",
-          "Gourmet food",
-          "TOD (6 months)"
+          "Spotify Premium",
+          "TOD (6 شهور)",
+          "YouTube Premium",
+          "London Cab (20%)",
+          "Sixt (15%)",
+          "فنادق الجونة (15%)",
+          "Gourmet (1,000 ج)",
+          "EgyptAir (أميال)"
         ],
         "fees": "1489 L.E"
       },
       {
         "name": "PREMIER Platinum",
+        "basePrice": "1725",
         "minutes": "10000",
         "data": "70 GB",
         "familyLines": "5",
@@ -80,11 +106,17 @@ window.ORANGE_PLANS_DATA = [
         "dataRoaming": "10 GB Weekly (3 times a year)",
         "intlMinutes": "60 MIN",
         "installment": "Up to 100000 L.E",
+        "savings": "6,090 ج.م توفير شهري (اشتراكات مدى الحياة)",
         "subscriptions": [
-          "Spotify",
-          "Amazon Prime",
-          "Gourmet food",
-          "TOD (Life)"
+          "Amazon (مدى الحياة)",
+          "Spotify (مدى الحياة)",
+          "TOD (مدى الحياة)",
+          "YouTube Premium",
+          "London Cab (20%)",
+          "Sixt (15%)",
+          "فنادق الجونة (15%)",
+          "Gourmet (1,500 ج)",
+          "EgyptAir (أميال)"
         ],
         "fees": "2134 L.E"
       }

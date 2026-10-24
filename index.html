@@ -375,62 +375,388 @@
 
         <section id="premierSection" class="tab-content">
             <section class="hero">
-                <h1>عالم من الرفاهية، <br><span class="gradient-text">باقات PREMIER & Super Max.</span></h1>
-                <p>استعرض تفاصيل أرقى الباقات والخدمات الحصرية. <br>كل ما تحتاجه من معلومات في مكان واحد.</p>
+                <div class="hero-badge">
+                    <i data-lucide="crown"></i>
+                    <span>Orange PREMIER</span>
+                </div>
+                <h1>أكبر عدد مزايا، <br><span class="gradient-text">في نظام واحد في مصر.</span></h1>
+                <p>استعرض تفاصيل أرقى الباقات، قيمة التوفير والاشتراكات المجانية الحصرية (تصل إلى 6,090 ج.م شهرياً)، وخدمة تأمين الأجهزة في مكان واحد.</p>
             </section>
 
-            <div class="premier-notice">
-                <div class="notice-header">
-                    <i data-lucide="alert-triangle"></i>
-                    <h2>تعليمات وتسهيلات تفعيل باقات PREMIER</h2>
+            <!-- Premier Section Sub-Navigation Tabs -->
+            <div class="premier-quick-nav" id="premierSubNav">
+                <button type="button" class="p-nav-pill active" data-subview-target="plans">
+                    <i data-lucide="layers"></i>
+                    <span>باقات PREMIER والتوفير</span>
+                </button>
+                <button type="button" class="p-nav-pill" data-subview-target="insurance">
+                    <i data-lucide="shield-check"></i>
+                    <span>تأمين الأجهزة (Insurance)</span>
+                </button>
+                <button type="button" class="p-nav-pill" data-subview-target="calc">
+                    <i data-lucide="calculator"></i>
+                    <span>حاسبة الفواتير</span>
+                </button>
+                <button type="button" class="p-nav-pill" data-subview-target="notice">
+                    <i data-lucide="file-check"></i>
+                    <span>شروط التفعيل والإثباتات</span>
+                </button>
+                <button type="button" class="p-nav-pill" data-subview-target="all">
+                    <i data-lucide="layout-grid"></i>
+                    <span>عرض الكل</span>
+                </button>
+            </div>
+
+            <!-- SUBVIEW 1: PLANS & VALUE FOR MONEY (DEFAULT) -->
+            <div class="premier-sub-view active" data-subview="plans" id="subviewPlans">
+                <!-- ===== VALUE FOR MONEY CARD ===== -->
+            <div class="vfm-wrapper" id="premierVfmCard">
+                <div class="vfm-header">
+                    <div class="vfm-badge"><i data-lucide="sparkles"></i> مزايا استثنائية لعملاء PREMIER</div>
+                    <h2>قيمة المزايا والاشتراكات المجانية <span class="vfm-gradient-text">Value for Money</span></h2>
+                    <p>استعرض قيمة التوفير والاشتراكات والخصومات الشهرية الحصرية التي يحصل عليها العميل مجاناً مع كل باقة (تصل إلى 6,090 ج.م شهرياً!)</p>
                 </div>
 
-                <div class="notice-steps">
-                    <div class="notice-step">
-                        <h3><i data-lucide="search"></i> الخطوة الأولى: Blacklist Check</h3>
-                        <p>لازم تعمل <strong>SR 1114</strong> وتفتح <strong>SMART SCRIPT</strong> وتكتب فيها اسم العميل
-                            والرقم القومي، ولو مفتحتش بتكتب البيانات دي في الـ <strong>NOTES</strong> الخاصة بالـ SR،
-                            وبعدها عن طريق الاتصال بـ:<br><strong>ACTIVATION POSTPAID OPTION (2)</strong></p>
-                    </div>
-                    <div class="notice-step">
-                        <h3><i data-lucide="file-text"></i> الخطوة الثانية: الإثباتات</h3>
-                        <p>لازم يكون مع العميل <strong>SECOND ID</strong> (مستند إثبات قدرة على الدفع) زي الموجود في
-                            القائمة بالأسفل، أو يدفع <strong>شهر مقدم</strong>.</p>
-                    </div>
-                    <div class="notice-step">
-                        <h3><i data-lucide="crown"></i> باقات الـ Elite (1200 / 1725)</h3>
-                        <p>في حالة باقات Premier 1200 أو 1725، لازم العميل يدفع <strong>شهر مقدم + شهر تأميني</strong>
-                            لضمان تفعيل الخدمة.</p>
-                    </div>
-                </div>
-
-                <div class="docs-grid-wrapper">
-                    <div class="docs-grid-title">
-                        <i data-lucide="info"></i>
-                        <span>مستندات القدرة على الدفع (Second ID)</span>
-                    </div>
-                    <div class="docs-grid">
-                        <div class="doc-item"><i data-lucide="map"></i> جواز سفر</div>
-                        <div class="doc-item"><i data-lucide="shield-check"></i> كارنيه شرطة أو قوات مسلحة</div>
-                        <div class="doc-item"><i data-lucide="target"></i> رخصة سلاح</div>
-                        <div class="doc-item"><i data-lucide="gavel"></i> كارنيه القضاة</div>
-                        <div class="doc-item"><i data-lucide="car"></i> رخصة قيادة / رخصة سيارة (بنفس الاسم)</div>
-                        <div class="doc-item"><i data-lucide="credit-card"></i> كارت ائتمان (Credit Card) - ليس Debit
+                <!-- 5 Tier Comparison Cards -->
+                <div class="vfm-cards-grid">
+                    <div class="vfm-tier-card" data-tier="lite">
+                        <div class="vfm-tier-header">
+                            <span class="vfm-tier-name">PREMIER Lite</span>
+                            <span class="vfm-tier-price">520 ج.م / شهر</span>
                         </div>
-                        <div class="doc-item"><i data-lucide="home"></i> عقد ملكية أرض أو عقار / شهادة استثمار</div>
-                        <div class="doc-item"><i data-lucide="banknote"></i> مفردات مرتب</div>
-                        <div class="doc-item"><i data-lucide="heart-pulse"></i> كارنيه تأمين طبي</div>
-                        <div class="doc-item"><i data-lucide="users"></i> كارنيه عضوية في أي نقابة</div>
-                        <div class="doc-item"><i data-lucide="file-text"></i> كشف حساب ختامي لأي بطاقة ائتمان</div>
-                        <div class="doc-item"><i data-lucide="zap"></i> فاتورة (مياه، كهرباء، محمول)</div>
-                        <div class="doc-item"><i data-lucide="wifi"></i> فاتورة إنترنت أرضي (آخر شهرين)</div>
-                        <div class="doc-item"><i data-lucide="trophy"></i> كارنيه عضوية نادي أو مركز شباب معروف</div>
+                        <div class="vfm-tier-saving">
+                            <span class="saving-label">إجمالي قيمة التوفير</span>
+                            <span class="saving-value">3,110 <small>ج.م/شهر</small></span>
+                        </div>
+                        <div class="vfm-multiplier-tag">وفر 6 أضعاف اشتراكك</div>
+                        <ul class="vfm-perks-preview">
+                            <li><i data-lucide="check"></i> Amazon Prime & Spotify (12 شهر)</li>
+                            <li><i data-lucide="check"></i> خصم 20% رحلات London Cab (300 ج)</li>
+                            <li><i data-lucide="check"></i> خصم 15% تأجير سيارات Sixt (700 ج)</li>
+                            <li><i data-lucide="check"></i> خصم 15% فنادق الجونة (2000 ج/ليلة)</li>
+                        </ul>
+                    </div>
+
+                    <div class="vfm-tier-card" data-tier="plus">
+                        <div class="vfm-tier-header">
+                            <span class="vfm-tier-name">PREMIER Plus</span>
+                            <span class="vfm-tier-price">690 ج.م / شهر</span>
+                        </div>
+                        <div class="vfm-tier-saving">
+                            <span class="saving-label">إجمالي قيمة التوفير</span>
+                            <span class="saving-value">3,360 <small>ج.م/شهر</small></span>
+                        </div>
+                        <div class="vfm-multiplier-tag">وفر 4.8 أضعاف اشتراكك</div>
+                        <ul class="vfm-perks-preview">
+                            <li><i data-lucide="check"></i> مزايا Lite + قسيمة Gourmet (250 ج)</li>
+                            <li><i data-lucide="check"></i> Amazon Prime & Spotify مجاناً</li>
+                            <li><i data-lucide="check"></i> خصومات السفر والتنقل (Sixt & Cab)</li>
+                            <li><i data-lucide="check"></i> خصم فنادق الجونة (2000 ج/ليلة)</li>
+                        </ul>
+                    </div>
+
+                    <div class="vfm-tier-card" data-tier="select">
+                        <div class="vfm-tier-header">
+                            <span class="vfm-tier-name">PREMIER Select</span>
+                            <span class="vfm-tier-price">820 ج.م / شهر</span>
+                        </div>
+                        <div class="vfm-tier-saving">
+                            <span class="saving-label">إجمالي قيمة التوفير</span>
+                            <span class="saving-value">4,424 <small>ج.م/شهر</small></span>
+                        </div>
+                        <div class="vfm-multiplier-tag">وفر 5.3 أضعاف اشتراكك</div>
+                        <ul class="vfm-perks-preview">
+                            <li><i data-lucide="check"></i> اشتراك TOD مجاناً (3 شهور)</li>
+                            <li><i data-lucide="check"></i> اشتراك YouTube Premium (12 شهر)</li>
+                            <li><i data-lucide="check"></i> أميال EgyptAir (بقيمة 416 ج/شهر)</li>
+                            <li><i data-lucide="check"></i> قسائم Gourmet + خصومات السفر</li>
+                        </ul>
+                    </div>
+
+                    <div class="vfm-tier-card featured" data-tier="ultra">
+                        <div class="vfm-popular-badge">الأعلى طلباً</div>
+                        <div class="vfm-tier-header">
+                            <span class="vfm-tier-name">PREMIER Ultra</span>
+                            <span class="vfm-tier-price">1,200 ج.م / شهر</span>
+                        </div>
+                        <div class="vfm-tier-saving">
+                            <span class="saving-label">إجمالي قيمة التوفير</span>
+                            <span class="saving-value highlight">5,424 <small>ج.م/شهر</small></span>
+                        </div>
+                        <div class="vfm-multiplier-tag">وفر 4.5 أضعاف اشتراكك</div>
+                        <ul class="vfm-perks-preview">
+                            <li><i data-lucide="check"></i> اشتراك TOD مجاناً (6 شهور)</li>
+                            <li><i data-lucide="check"></i> اشتراك YouTube Premium (12 شهر)</li>
+                            <li><i data-lucide="check"></i> قسائم Gourmet بقيمة 1,000 ج</li>
+                            <li><i data-lucide="check"></i> أميال EgyptAir (بقيمة 666 ج/شهر)</li>
+                        </ul>
+                    </div>
+
+                    <div class="vfm-tier-card platinum" data-tier="platinum">
+                        <div class="vfm-popular-badge platinum-badge">👑 قمة الفخامة</div>
+                        <div class="vfm-tier-header">
+                            <span class="vfm-tier-name">PREMIER Platinum</span>
+                            <span class="vfm-tier-price">1,725 ج.م / شهر</span>
+                        </div>
+                        <div class="vfm-tier-saving">
+                            <span class="saving-label">إجمالي قيمة التوفير</span>
+                            <span class="saving-value gold">6,090 <small>ج.م/شهر</small></span>
+                        </div>
+                        <div class="vfm-multiplier-tag platinum-tag">اشتراكات ترفيهية مدى الحياة!</div>
+                        <ul class="vfm-perks-preview">
+                            <li><i data-lucide="check"></i> Amazon + Spotify + TOD مدى الحياة</li>
+                            <li><i data-lucide="check"></i> اشتراك YouTube Premium (12 شهر)</li>
+                            <li><i data-lucide="check"></i> قسائم Gourmet بقيمة 1,500 ج</li>
+                            <li><i data-lucide="check"></i> أميال EgyptAir (بقيمة 832 ج/شهر)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Table toggle button -->
+                <div class="vfm-toggle-wrapper">
+                    <button type="button" class="vfm-toggle-btn" id="vfmToggleTableBtn">
+                        <i data-lucide="table"></i>
+                        <span>عرض جدول تفكيك الخدمات الـ 9 بالكامل وقيمتها المالية</span>
+                        <i data-lucide="chevron-down" class="vfm-toggle-icon" id="vfmToggleIcon"></i>
+                    </button>
+                </div>
+
+                <!-- Detailed 9-service table matching Image 1 -->
+                <div class="vfm-full-table-wrapper" id="vfmFullTableWrapper" style="display: none;">
+                    <div class="table-scroll-hint"><i data-lucide="chevrons-right"></i><span>اسحب أفقياً لتصفح جميع الباقات وقيم الخصومات</span></div>
+                    <div class="table-responsive">
+                        <table class="vfm-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-num">#</th>
+                                    <th class="col-service">الخدمة / الميزة الحصرية</th>
+                                    <th class="col-details">تفاصيل الاستفادة</th>
+                                    <th>Lite<br><small>520 ج</small></th>
+                                    <th>Plus<br><small>690 ج</small></th>
+                                    <th>Select<br><small>820 ج</small></th>
+                                    <th>Ultra<br><small>1,200 ج</small></th>
+                                    <th class="th-plat">Platinum<br><small>1,725 ج (مدى الحياة)</small></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="badge-num">1</td>
+                                    <td><strong>Amazon Prime</strong></td>
+                                    <td>اشتراك 12 شهر (تسوق وترفيه مجاني)</td>
+                                    <td>30 ج</td>
+                                    <td>30 ج</td>
+                                    <td>30 ج</td>
+                                    <td>30 ج</td>
+                                    <td class="td-plat">30 ج</td>
+                                </tr>
+                                <tr>
+                                    <td class="badge-num">2</td>
+                                    <td><strong>Spotify Premium</strong></td>
+                                    <td>اشتراك 12 شهر (موسيقى وبودكاست بدون إعلانات)</td>
+                                    <td>80 ج</td>
+                                    <td>80 ج</td>
+                                    <td>80 ج</td>
+                                    <td>80 ج</td>
+                                    <td class="td-plat">80 ج</td>
+                                </tr>
+                                <tr>
+                                    <td class="badge-num">3</td>
+                                    <td><strong>TOD</strong></td>
+                                    <td>منصة البث الرياضي والأفلام والمسلسلات الحصرية</td>
+                                    <td class="dim-val">—</td>
+                                    <td class="dim-val">—</td>
+                                    <td>560 ج <small>(3 شهور)</small></td>
+                                    <td>560 ج <small>(6 شهور)</small></td>
+                                    <td class="td-plat">560 ج <small>(مدى الحياة)</small></td>
+                                </tr>
+                                <tr>
+                                    <td class="badge-num">4</td>
+                                    <td><strong>London Cab</strong></td>
+                                    <td>خصم 20% على الرحلات (مثال: خصم 300 ج للرحلات لمطار القاهرة)</td>
+                                    <td>300 ج</td>
+                                    <td>300 ج</td>
+                                    <td>300 ج</td>
+                                    <td>300 ج</td>
+                                    <td class="td-plat">300 ج</td>
+                                </tr>
+                                <tr>
+                                    <td class="badge-num">5</td>
+                                    <td><strong>Sixt</strong></td>
+                                    <td>خصم حتى 15% على إيجار السيارات بمعدل خصم 700 ج/يوم</td>
+                                    <td>700 ج</td>
+                                    <td>700 ج</td>
+                                    <td>700 ج</td>
+                                    <td>700 ج</td>
+                                    <td class="td-plat">700 ج</td>
+                                </tr>
+                                <tr>
+                                    <td class="badge-num">6</td>
+                                    <td><strong>El Gouna</strong></td>
+                                    <td>خصم 15% على جميع فنادق الجونة بمعدل خصم 2000 ج لكل ليلة</td>
+                                    <td>2,000 ج</td>
+                                    <td>2,000 ج</td>
+                                    <td>2,000 ج</td>
+                                    <td>2,000 ج</td>
+                                    <td class="td-plat">2,000 ج</td>
+                                </tr>
+                                <tr>
+                                    <td class="badge-num">7</td>
+                                    <td><strong>Gourmet</strong></td>
+                                    <td>خصم 30% بحد أقصى + قسائم شراء شهرية</td>
+                                    <td>250 ج</td>
+                                    <td>250 ج</td>
+                                    <td>250 ج</td>
+                                    <td>1,000 ج <small>(500 خصم + 500 قسيمة)</small></td>
+                                    <td class="td-plat">1,500 ج <small>(500 خصم + 1000 قسيمة)</small></td>
+                                </tr>
+                                <tr>
+                                    <td class="badge-num">8</td>
+                                    <td><strong>YouTube Premium</strong></td>
+                                    <td>اشتراك 12 شهر (مشاهدة وتشغيل في الخلفية بدون إعلانات)</td>
+                                    <td class="dim-val">—</td>
+                                    <td class="dim-val">—</td>
+                                    <td>88 ج</td>
+                                    <td>88 ج</td>
+                                    <td class="td-plat">88 ج</td>
+                                </tr>
+                                <tr>
+                                    <td class="badge-num">9</td>
+                                    <td><strong>EgyptAir</strong></td>
+                                    <td>أميال شهرية لشراء تذاكر السفر أو ترقية لـ Business Class</td>
+                                    <td class="dim-val">—</td>
+                                    <td class="dim-val">—</td>
+                                    <td>416 ج</td>
+                                    <td>666 ج</td>
+                                    <td class="td-plat">832 ج</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td colspan="3" class="total-title">
+                                        <i data-lucide="award"></i> إجمالي قيمة التوفير والاشتراكات الشهرية
+                                    </td>
+                                    <td>3,110 ج</td>
+                                    <td>3,360 ج</td>
+                                    <td>4,424 ج</td>
+                                    <td>5,424 ج</td>
+                                    <td class="total-plat">6,090 ج</td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
+            <!-- ===== END VALUE FOR MONEY CARD ===== -->
 
-            <!-- ===== BILLING CALCULATOR ===== -->
-            <div class="billing-calc-wrapper">
+                <div id="plansContainer" class="container">
+                <!-- Categories and Cards will be injected here -->
+            </div>
+            </div>
+
+            <!-- SUBVIEW 2: ORANGE DEVICE INSURANCE -->
+            <div class="premier-sub-view" data-subview="insurance" id="subviewInsurance">
+                <!-- ===== ORANGE DEVICE INSURANCE CARD ===== -->
+            <div class="insurance-wrapper" id="premierInsuranceCard">
+                <div class="insurance-header">
+                    <div class="insurance-badge-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <div>
+                        <div class="ins-sub-pill">PREMIER DEVICE CARE</div>
+                        <h2>تأمين الأجهزة الذكية <span>Orange Device Insurance</span></h2>
+                        <p>Protect the new device for a small fee – the customer pays only 20% of repairs</p>
+                    </div>
+                </div>
+
+                <div class="insurance-grid">
+                    <!-- Left Hero Card -->
+                    <div class="ins-hero-banner">
+                        <div class="ins-hero-top">
+                            <span class="ins-device-shield"><i data-lucide="shield-alert"></i> Device Insurance</span>
+                            <span class="ins-exclusive-tag">حصرياً لعملاء Premier</span>
+                        </div>
+                        <div class="ins-big-callout">
+                            <div class="ins-word-only">ONLY</div>
+                            <div class="ins-big-number">20%</div>
+                            <div class="ins-word-sub">of the repair fees is all the customer pays in case of damage</div>
+                        </div>
+                        <div class="ins-hero-statement">
+                            <i data-lucide="check-circle-2"></i>
+                            <span>في حالة حدوث أي ضرر أو كسر للجهاز، العميل يتحمل <strong>20% فقط</strong> من تكلفة التصليح والشركة تتحمل الباقي!</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Specs & Calculator -->
+                    <div class="ins-details-col">
+                        <div class="ins-pitch-box">
+                            <div class="pitch-title"><i data-lucide="message-square"></i> ماذا تقول للعميل؟ (What to tell the customer):</div>
+                            <div class="ins-specs-list">
+                                <div class="ins-spec-item">
+                                    <div class="ins-spec-icon orange"><i data-lucide="shield"></i></div>
+                                    <div class="ins-spec-text">
+                                        <strong>The insurance fee (رسوم التأمين):</strong>
+                                        <span>العميل يدفع <strong>0.025%</strong> من سعر الموبايل كرسوم تأمين دورية.</span>
+                                    </div>
+                                </div>
+
+                                <div class="ins-spec-item">
+                                    <div class="ins-spec-icon red"><i data-lucide="percent"></i></div>
+                                    <div class="ins-spec-text">
+                                        <strong>In case of damage (في حالة حدوث ضرر):</strong>
+                                        <span>العميل يدفع <strong>20% فقط</strong> من التكلفة الإجمالية للإصلاح وقطع الغيار.</span>
+                                    </div>
+                                </div>
+
+                                <div class="ins-spec-item">
+                                    <div class="ins-spec-icon green"><i data-lucide="smartphone"></i></div>
+                                    <div class="ins-spec-text">
+                                        <strong>Eligible devices (الأجهزة المؤهلة للتأمين):</strong>
+                                        <div class="ins-devices-chips">
+                                            <span class="chip-device"><i data-lucide="check"></i> iPhone 18 (جميع الإصدارات)</span>
+                                            <span class="chip-device"><i data-lucide="check"></i> iPhone 17 (جميع الإصدارات)</span>
+                                            <span class="chip-device"><i data-lucide="check"></i> Oppo Find N6</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Device Insurance Calculator -->
+                        <div class="ins-live-calc">
+                            <div class="ins-calc-hdr">
+                                <i data-lucide="calculator"></i>
+                                <span>حاسبة رسوم التأمين الفورية (0.025%):</span>
+                            </div>
+                            <div class="ins-calc-controls">
+                                <div class="ins-input-group">
+                                    <label for="insDevicePrice">سعر الموبايل بالجنيه:</label>
+                                    <input type="number" id="insDevicePrice" placeholder="مثال: 65,000" class="ins-calc-input" inputmode="numeric" min="0" step="100">
+                                </div>
+                                <div class="ins-quick-devices">
+                                    <button type="button" class="ins-preset-btn" data-price="45000">45,000 ج</button>
+                                    <button type="button" class="ins-preset-btn" data-price="65000">65,000 ج</button>
+                                    <button type="button" class="ins-preset-btn" data-price="85000">85,000 ج</button>
+                                </div>
+                            </div>
+                            <div class="ins-calc-output">
+                                <div class="ins-out-row">
+                                    <span class="out-label">رسوم التأمين المستحقة (0.025%):</span>
+                                    <span class="out-val" id="insCalculatedFee">0.00 ج.م</span>
+                                </div>
+                                <div class="ins-out-hint">
+                                    * في حالة الإصلاح بقيمة 10,000 ج.م، يدفع العميل <strong>2,000 ج.م فقط (20%)</strong>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ===== END ORANGE DEVICE INSURANCE CARD ===== -->
+            </div>
+
+            <!-- SUBVIEW 3: BILLING CALCULATOR -->
+            <div class="premier-sub-view" data-subview="calc" id="subviewCalc">
+                <div class="billing-calc-wrapper" id="billingCalcWrapper">
                 <div class="billing-calc-header">
                     <i data-lucide="calculator"></i>
                     <div>
@@ -444,7 +770,7 @@
                     <button class="billing-plan-btn eagle" data-base="175" data-name="Eagle 175">Eagle 175</button>
                     <button class="billing-plan-btn" data-base="520" data-name="PREMIER Lite">PREMIER Lite</button>
                     <button class="billing-plan-btn" data-base="690" data-name="PREMIER Plus">PREMIER Plus</button>
-                    <button class="billing-plan-btn" data-base="860" data-name="PREMIER Select">PREMIER Select</button>
+                    <button class="billing-plan-btn" data-base="820" data-name="PREMIER Select">PREMIER Select</button>
                     <button class="billing-plan-btn elite" data-base="1200" data-name="PREMIER Ultra">PREMIER Ultra</button>
                     <button class="billing-plan-btn elite" data-base="1725" data-name="PREMIER Platinum">PREMIER Platinum</button>
                 </div>
@@ -557,11 +883,63 @@
                     </div>
                 </div>
             </div>
-            <!-- ===== END BILLING CALCULATOR ===== -->
-
-            <div id="plansContainer" class="container">
-                <!-- Categories and Cards will be injected here -->
             </div>
+
+            <!-- SUBVIEW 4: ACTIVATION NOTICE & SECOND ID -->
+            <div class="premier-sub-view" data-subview="notice" id="subviewNotice">
+                <div class="premier-notice" id="premierNoticeWrapper">
+                <div class="notice-header">
+                    <i data-lucide="alert-triangle"></i>
+                    <h2>تعليمات وتسهيلات تفعيل باقات PREMIER</h2>
+                </div>
+
+                <div class="notice-steps">
+                    <div class="notice-step">
+                        <h3><i data-lucide="search"></i> الخطوة الأولى: Blacklist Check</h3>
+                        <p>لازم تعمل <strong>SR 1114</strong> وتفتح <strong>SMART SCRIPT</strong> وتكتب فيها اسم العميل
+                            والرقم القومي، ولو مفتحتش بتكتب البيانات دي في الـ <strong>NOTES</strong> الخاصة بالـ SR،
+                            وبعدها عن طريق الاتصال بـ:<br><strong>ACTIVATION POSTPAID OPTION (2)</strong></p>
+                    </div>
+                    <div class="notice-step">
+                        <h3><i data-lucide="file-text"></i> الخطوة الثانية: الإثباتات</h3>
+                        <p>لازم يكون مع العميل <strong>SECOND ID</strong> (مستند إثبات قدرة على الدفع) زي الموجود في
+                            القائمة بالأسفل، أو يدفع <strong>شهر مقدم</strong>.</p>
+                    </div>
+                    <div class="notice-step">
+                        <h3><i data-lucide="crown"></i> باقات الـ Elite (1200 / 1725)</h3>
+                        <p>في حالة باقات Premier 1200 أو 1725، لازم العميل يدفع <strong>شهر مقدم + شهر تأميني</strong>
+                            لضمان تفعيل الخدمة.</p>
+                    </div>
+                </div>
+
+                <div class="docs-grid-wrapper">
+                    <div class="docs-grid-title">
+                        <i data-lucide="info"></i>
+                        <span>مستندات القدرة على الدفع (Second ID)</span>
+                    </div>
+                    <div class="docs-grid">
+                        <div class="doc-item"><i data-lucide="map"></i> جواز سفر</div>
+                        <div class="doc-item"><i data-lucide="shield-check"></i> كارنيه شرطة أو قوات مسلحة</div>
+                        <div class="doc-item"><i data-lucide="target"></i> رخصة سلاح</div>
+                        <div class="doc-item"><i data-lucide="gavel"></i> كارنيه القضاة</div>
+                        <div class="doc-item"><i data-lucide="car"></i> رخصة قيادة / رخصة سيارة (بنفس الاسم)</div>
+                        <div class="doc-item"><i data-lucide="credit-card"></i> كارت ائتمان (Credit Card) - ليس Debit
+                        </div>
+                        <div class="doc-item"><i data-lucide="home"></i> عقد ملكية أرض أو عقار / شهادة استثمار</div>
+                        <div class="doc-item"><i data-lucide="banknote"></i> مفردات مرتب</div>
+                        <div class="doc-item"><i data-lucide="heart-pulse"></i> كارنيه تأمين طبي</div>
+                        <div class="doc-item"><i data-lucide="users"></i> كارنيه عضوية في أي نقابة</div>
+                        <div class="doc-item"><i data-lucide="file-text"></i> كشف حساب ختامي لأي بطاقة ائتمان</div>
+                        <div class="doc-item"><i data-lucide="zap"></i> فاتورة (مياه، كهرباء، محمول)</div>
+                        <div class="doc-item"><i data-lucide="wifi"></i> فاتورة إنترنت أرضي (آخر شهرين)</div>
+                        <div class="doc-item"><i data-lucide="trophy"></i> كارنيه عضوية نادي أو مركز شباب معروف</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== BILLING CALCULATOR ===== -->
+            </div>
+
         </section>
 
         <section id="goSection" class="tab-content">

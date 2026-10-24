@@ -953,29 +953,111 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (plan.internet) metricsHTML += `<div class="metric-item"><span class="metric-value">${plan.internet}</span><span class="metric-label">Net</span></div>`;
 
                 let featuresHTML = '';
-                if (plan.familyLines && plan.familyLines !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="users"></i> Family Lines: ${plan.familyLines}</li>`;
-                if (plan.adslDiscount && plan.adslDiscount !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="wifi"></i> ADSL Discount: ${plan.adslDiscount} L.E</li>`;
-                if (plan.hwDiscount && plan.hwDiscount !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="smartphone"></i> Handset Discount: ${plan.hwDiscount} L.E</li>`;
-                if (plan.dataRoaming && plan.dataRoaming !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="plane"></i> Roaming: ${plan.dataRoaming}</li>`;
-                if (plan.intlMinutes && plan.intlMinutes !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="globe"></i> International: ${plan.intlMinutes}</li>`;
-                if (plan.installment && plan.installment !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="credit-card"></i> Installment: ${plan.installment}</li>`;
-                if (plan.afterFinish) featuresHTML += `<li class="feature-item"><i data-lucide="alert-circle"></i> Extra: ${plan.afterFinish}</li>`;
+                const isPremier = category.category === 'Orange Premier';
+
+                if (isPremier) {
+                    if (plan.familyLines && plan.familyLines !== '-') {
+                        featuresHTML += `<li class="feature-item"><i data-lucide="users"></i> <span>العائلة: <strong>${plan.familyLines} خطوط</strong></span></li>`;
+                    }
+                    if (plan.adslDiscount && plan.adslDiscount !== '-') {
+                        featuresHTML += `<li class="feature-item"><i data-lucide="wifi"></i> <span>خصم نت: <strong>${plan.adslDiscount} ج</strong></span></li>`;
+                    }
+                    if (plan.hwDiscount && plan.hwDiscount !== '-') {
+                        featuresHTML += `<li class="feature-item"><i data-lucide="smartphone"></i> <span>خصم جهاز: <strong>${plan.hwDiscount} ج</strong></span></li>`;
+                    }
+                    if (plan.intlMinutes && plan.intlMinutes !== '-') {
+                        featuresHTML += `<li class="feature-item"><i data-lucide="globe"></i> <span>دولي: <strong>${plan.intlMinutes}</strong></span></li>`;
+                    }
+                    if (plan.installment && plan.installment !== '-') {
+                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="credit-card"></i> <span>التقسيط: <strong>${plan.installment}</strong></span></li>`;
+                    }
+                    if (plan.dataRoaming && plan.dataRoaming !== '-') {
+                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="plane"></i> <span>التجوال: <strong>${plan.dataRoaming}</strong></span></li>`;
+                    }
+                    if (plan.afterFinish) {
+                        featuresHTML += `<li class="feature-item span-full"><i data-lucide="alert-circle"></i> <span>${plan.afterFinish}</span></li>`;
+                    }
+                } else {
+                    if (plan.familyLines && plan.familyLines !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="users"></i> Family Lines: ${plan.familyLines}</li>`;
+                    if (plan.adslDiscount && plan.adslDiscount !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="wifi"></i> ADSL Discount: ${plan.adslDiscount} L.E</li>`;
+                    if (plan.hwDiscount && plan.hwDiscount !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="smartphone"></i> Handset Discount: ${plan.hwDiscount} L.E</li>`;
+                    if (plan.dataRoaming && plan.dataRoaming !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="plane"></i> Roaming: ${plan.dataRoaming}</li>`;
+                    if (plan.intlMinutes && plan.intlMinutes !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="globe"></i> International: ${plan.intlMinutes}</li>`;
+                    if (plan.installment && plan.installment !== '-') featuresHTML += `<li class="feature-item"><i data-lucide="credit-card"></i> Installment: ${plan.installment}</li>`;
+                    if (plan.afterFinish) featuresHTML += `<li class="feature-item"><i data-lucide="alert-circle"></i> Extra: ${plan.afterFinish}</li>`;
+                }
 
                 let subsHTML = '';
                 if (plan.subscriptions && plan.subscriptions.length > 0) {
-                    subsHTML = `<div class="subs-list">` + plan.subscriptions.map(s => `<span class="sub-badge">${s}</span>`).join('') + `</div>`;
+                    const totalSubs = plan.subscriptions.length;
+                    const primarySubs = plan.subscriptions.slice(0, 4);
+                    const extraSubs = plan.subscriptions.slice(4);
+                    const planIdSafe = (plan.name || 'plan').replace(/[^a-zA-Z0-9]/g, '_') + '_' + index;
+
+                    const renderBadge = (s) => {
+                        let icon = 'star';
+                        if (s.includes('Amazon')) icon = 'shopping-bag';
+                        else if (s.includes('Spotify')) icon = 'music';
+                        else if (s.includes('TOD')) icon = 'play-circle';
+                        else if (s.includes('YouTube')) icon = 'video';
+                        else if (s.includes('Cab')) icon = 'car';
+                        else if (s.includes('Sixt')) icon = 'key';
+                        else if (s.includes('الجونة')) icon = 'palmtree';
+                        else if (s.includes('Gourmet')) icon = 'utensils';
+                        else if (s.includes('EgyptAir')) icon = 'plane';
+                        return `<span class="sub-badge"><i data-lucide="${icon}"></i> <span>${s}</span></span>`;
+                    };
+
+                    let extraSubsHTML = '';
+                    let toggleBtnHTML = '';
+
+                    if (extraSubs.length > 0) {
+                        extraSubsHTML = `
+                            <div class="subs-extra-wrapper" id="subsExtra_${planIdSafe}">
+                                <div class="subs-list extra-subs-list">
+                                    ${extraSubs.map(renderBadge).join('')}
+                                </div>
+                            </div>
+                        `;
+                        toggleBtnHTML = `
+                            <button type="button" class="subs-toggle-btn" data-target="subsExtra_${planIdSafe}" data-extra-count="${extraSubs.length}" aria-expanded="false">
+                                <span class="btn-text">+ ${extraSubs.length} مزايا إضافية (سفر ولايف ستايل)</span>
+                                <i data-lucide="chevron-down" class="btn-icon"></i>
+                            </button>
+                        `;
+                    }
+
+                    subsHTML = `
+                        <div class="subs-container">
+                            <div class="subs-header-row">
+                                <span class="subs-heading"><i data-lucide="sparkles"></i> المزايا والاشتراكات (${totalSubs})</span>
+                                <span class="subs-included-badge">مجاناً</span>
+                            </div>
+                            <div class="subs-list primary-subs-list">
+                                ${primarySubs.map(renderBadge).join('')}
+                            </div>
+                            ${extraSubsHTML}
+                            ${toggleBtnHTML}
+                        </div>`;
                 }
 
+                let savingsHTML = '';
+                if (plan.savings) {
+                    savingsHTML = `<div class="plan-savings-pill"><i data-lucide="sparkles"></i> ${plan.savings}</div>`;
+                }
+
+                const featureListClass = isPremier ? 'feature-list premier-specs-grid' : 'feature-list';
                 card.innerHTML = `
                     <div class="plan-header">
                         <div class="plan-name">${plan.name}</div>
                         <div class="plan-price">${plan.fees} / mo</div>
+                        ${savingsHTML}
                     </div>
                     <div class="plan-metrics">
                         ${metricsHTML}
                     </div>
                     <div class="plan-features">
-                        <ul class="feature-list">
+                        <ul class="${featureListClass}">
                             ${featuresHTML}
                         </ul>
                     </div>
@@ -985,6 +1067,42 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             container.appendChild(grid);
         });
+
+        // Initialize delegated click listener for expandable subs toggle once
+        if (!window._subsToggleInit) {
+            window._subsToggleInit = true;
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest('.subs-toggle-btn');
+                if (!btn) return;
+                e.preventDefault();
+                const targetId = btn.getAttribute('data-target');
+                const extraCount = btn.getAttribute('data-extra-count') || '';
+                const wrapper = document.getElementById(targetId);
+                if (!wrapper) return;
+
+                const isExpanded = btn.classList.contains('expanded');
+                if (isExpanded) {
+                    wrapper.classList.remove('open');
+                    btn.classList.remove('expanded');
+                    btn.setAttribute('aria-expanded', 'false');
+                    const textSpan = btn.querySelector('.btn-text');
+                    if (textSpan) textSpan.textContent = `+ ${extraCount} مزايا إضافية (سفر ولايف ستايل)`;
+                    const icon = btn.querySelector('.btn-icon');
+                    if (icon) icon.setAttribute('data-lucide', 'chevron-down');
+                } else {
+                    wrapper.classList.add('open');
+                    btn.classList.add('expanded');
+                    btn.setAttribute('aria-expanded', 'true');
+                    const textSpan = btn.querySelector('.btn-text');
+                    if (textSpan) textSpan.textContent = `إخفاء المزايا الإضافية`;
+                    const icon = btn.querySelector('.btn-icon');
+                    if (icon) icon.setAttribute('data-lucide', 'chevron-up');
+                }
+                if (window.safeRenderIcons) window.safeRenderIcons();
+                else if (window.lucide && typeof window.lucide.createIcons === 'function') window.lucide.createIcons();
+            });
+        }
+
         window.safeRenderIcons();
     }
 
