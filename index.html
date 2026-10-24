@@ -389,6 +389,10 @@
                     <i data-lucide="layers"></i>
                     <span>باقات PREMIER والتوفير</span>
                 </button>
+                <button type="button" class="p-nav-pill" data-subview-target="compare">
+                    <i data-lucide="scale"></i>
+                    <span>مقارنة وترقية (Upselling)</span>
+                </button>
                 <button type="button" class="p-nav-pill" data-subview-target="insurance">
                     <i data-lucide="shield-check"></i>
                     <span>تأمين الأجهزة (Insurance)</span>
@@ -417,6 +421,7 @@
                     <i data-lucide="sparkles" class="picker-sparkle-icon"></i>
                     <select id="premierMobileViewSelect" class="premier-mobile-select" aria-label="اختر قسم PREMIER">
                         <option value="plans" selected>👑 باقات PREMIER والتوفير (Value for Money)</option>
+                        <option value="compare">⚖️ مقارنة باقتين وترقية النظام (Upselling)</option>
                         <option value="insurance">🛡️ تأمين الأجهزة (Insurance 0.025%)</option>
                         <option value="calc">🧮 حاسبة الفواتير والضريبة</option>
                         <option value="notice">📋 شروط التفعيل والإثباتات</option>
@@ -670,6 +675,57 @@
                 <div id="plansContainer" class="container">
                 <!-- Categories and Cards will be injected here -->
             </div>
+            </div>
+
+            <!-- SUBVIEW: QUICK COMPARISON & UPSELLING TOOL -->
+            <div class="premier-sub-view" data-subview="compare" id="subviewCompare">
+                <div class="compare-wrapper" id="premierCompareCard">
+                    <div class="compare-header">
+                        <div class="compare-badge"><i data-lucide="scale"></i> أداة البيع الذكي والترقية (Upselling)</div>
+                        <h2>مقارنة باقات PREMIER <span class="vfm-gradient-text">وترقية النظام</span></h2>
+                        <p>قارن بين باقة العميل الحالية والباقة المقترحة للترقية لمعرفة فرق الفاتورة، والزيادة في النت والمكالمات، والمزايا المجانية الإضافية مع جملة الإقناع الجاهزة.</p>
+                    </div>
+
+                    <!-- Comparison Selector Controls -->
+                    <div class="compare-controls-card">
+                        <div class="compare-selectors-grid">
+                            <div class="compare-select-col">
+                                <label for="comparePlanA"><i data-lucide="user"></i> باقة العميل الحالية:</label>
+                                <div class="c-select-wrap">
+                                    <select id="comparePlanA" class="compare-select">
+                                        <option value="PREMIER Lite">PREMIER Lite (520 ج / 652 بالفواتير)</option>
+                                        <option value="PREMIER Plus" selected>PREMIER Plus (690 ج / 861 بالفواتير)</option>
+                                        <option value="PREMIER Select">PREMIER Select (820 ج / 1021 بالفواتير)</option>
+                                        <option value="PREMIER Ultra">PREMIER Ultra (1200 ج / 1489 بالفواتير)</option>
+                                        <option value="PREMIER Platinum">PREMIER Platinum (1725 ج / 2134 بالفواتير)</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="c-select-arrow"></i>
+                                </div>
+                            </div>
+
+                            <button type="button" id="compareSwapBtn" class="compare-swap-btn" title="تبديل الباقتين" aria-label="تبديل الباقتين">
+                                <i data-lucide="arrow-left-right"></i>
+                            </button>
+
+                            <div class="compare-select-col">
+                                <label for="comparePlanB"><i data-lucide="trending-up"></i> الباقة المقترحة للترقية:</label>
+                                <div class="c-select-wrap highlight">
+                                    <select id="comparePlanB" class="compare-select">
+                                        <option value="PREMIER Lite">PREMIER Lite (520 ج / 652 بالفواتير)</option>
+                                        <option value="PREMIER Plus">PREMIER Plus (690 ج / 861 بالفواتير)</option>
+                                        <option value="PREMIER Select" selected>PREMIER Select (820 ج / 1021 بالفواتير)</option>
+                                        <option value="PREMIER Ultra">PREMIER Ultra (1200 ج / 1489 بالفواتير)</option>
+                                        <option value="PREMIER Platinum">PREMIER Platinum (1725 ج / 2134 بالفواتير)</option>
+                                    </select>
+                                    <i data-lucide="chevron-down" class="c-select-arrow"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Dynamic Output Card -->
+                    <div id="compareResultContainer" class="compare-result-container"></div>
+                </div>
             </div>
 
             <!-- SUBVIEW 2: ORANGE DEVICE INSURANCE -->

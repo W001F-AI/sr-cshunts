@@ -351,7 +351,340 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ============================================
+    // PREMIER COMPARISON & UPSELLING TOOL
+    // ============================================
+    function initPremierComparison() {
+        const planASelect = document.getElementById('comparePlanA');
+        const planBSelect = document.getElementById('comparePlanB');
+        const swapBtn = document.getElementById('compareSwapBtn');
+        const resultContainer = document.getElementById('compareResultContainer');
+
+        if (!planASelect || !planBSelect || !resultContainer) return;
+
+        const PREMIER_TIERS = {
+            'PREMIER Lite': {
+                name: 'PREMIER Lite',
+                tierRank: 1,
+                basePrice: 520,
+                totalFees: 652,
+                minutes: 2500,
+                dataGb: 15,
+                familyLines: 1,
+                intlMinutes: 0,
+                intlLabel: 'بدون دقائق دولية',
+                dataRoaming: '1 GB Weekly (مرتين سنوياً)',
+                installment: '30,000 ج.م',
+                savings: 3110,
+                subs: ['Amazon Prime', 'Spotify Premium', 'London Cab (20%)', 'Sixt (15%)', 'فنادق الجونة (15%)']
+            },
+            'PREMIER Plus': {
+                name: 'PREMIER Plus',
+                tierRank: 2,
+                basePrice: 690,
+                totalFees: 861,
+                minutes: 3500,
+                dataGb: 20,
+                familyLines: 2,
+                intlMinutes: 15,
+                intlLabel: '15 دقيقة دولية',
+                dataRoaming: '1.5 GB Weekly (مرتين سنوياً)',
+                installment: '45,000 ج.م',
+                savings: 3360,
+                subs: ['Amazon Prime', 'Spotify Premium', 'London Cab (20%)', 'Sixt (15%)', 'فنادق الجونة (15%)', 'Gourmet (خصم)']
+            },
+            'PREMIER Select': {
+                name: 'PREMIER Select',
+                tierRank: 3,
+                basePrice: 820,
+                totalFees: 1021,
+                minutes: 5000,
+                dataGb: 25,
+                familyLines: 3,
+                intlMinutes: 30,
+                intlLabel: '30 دقيقة دولية',
+                dataRoaming: '10 GB Weekly (مرة سنوياً)',
+                installment: '50,000 ج.م',
+                savings: 4424,
+                subs: ['Amazon Prime', 'Spotify Premium', 'TOD (3 شهور)', 'YouTube Premium', 'London Cab (20%)', 'Sixt (15%)', 'فنادق الجونة (15%)', 'Gourmet (خصم)', 'EgyptAir (أميال)']
+            },
+            'PREMIER Ultra': {
+                name: 'PREMIER Ultra',
+                tierRank: 4,
+                basePrice: 1200,
+                totalFees: 1489,
+                minutes: 7000,
+                dataGb: 40,
+                familyLines: 4,
+                intlMinutes: 45,
+                intlLabel: '45 دقيقة دولية',
+                dataRoaming: '10 GB Weekly (مرتين سنوياً)',
+                installment: '60,000 ج.م',
+                savings: 5424,
+                subs: ['Amazon Prime', 'Spotify Premium', 'TOD (6 شهور)', 'YouTube Premium', 'London Cab (20%)', 'Sixt (15%)', 'فنادق الجونة (15%)', 'Gourmet (1,000 ج)', 'EgyptAir (أميال)']
+            },
+            'PREMIER Platinum': {
+                name: 'PREMIER Platinum',
+                tierRank: 5,
+                basePrice: 1725,
+                totalFees: 2134,
+                minutes: 10000,
+                dataGb: 70,
+                familyLines: 5,
+                intlMinutes: 60,
+                intlLabel: '60 دقيقة دولية',
+                dataRoaming: '10 GB Weekly (3 مرات سنوياً)',
+                installment: '100,000 ج.م',
+                savings: 6090,
+                subs: ['Amazon (مدى الحياة)', 'Spotify (مدى الحياة)', 'TOD (مدى الحياة)', 'YouTube Premium', 'London Cab (20%)', 'Sixt (15%)', 'فنادق الجونة (15%)', 'Gourmet (1,500 ج)', 'EgyptAir (أميال)']
+            }
+        };
+
+        const subIcons = {
+            'Amazon': 'shopping-bag',
+            'Spotify': 'music',
+            'TOD': 'play-circle',
+            'YouTube': 'video',
+            'Cab': 'car',
+            'Sixt': 'key',
+            'الجونة': 'palmtree',
+            'Gourmet': 'utensils',
+            'EgyptAir': 'plane'
+        };
+
+        function getIconForSub(subText) {
+            for (const key in subIcons) {
+                if (subText.includes(key)) return subIcons[key];
+            }
+            return 'star';
+        }
+
+        function renderComparison() {
+            const pAKey = planASelect.value;
+            const pBKey = planBSelect.value;
+            const planA = PREMIER_TIERS[pAKey];
+            const planB = PREMIER_TIERS[pBKey];
+
+            if (!planA || !planB) return;
+
+            if (pAKey === pBKey) {
+                resultContainer.innerHTML = `
+                    <div class="c-same-plans-alert">
+                        <i data-lucide="info"></i>
+                        <span>لقد اخترت نفس الباقة (${planA.name})! اختر باقتين مختلفتين لمعرفة فرق السعر ومزايا الترقية.</span>
+                    </div>
+                `;
+                if (window.safeRenderIcons) window.safeRenderIcons();
+                return;
+            }
+
+            const feeDiff = planB.totalFees - planA.totalFees;
+            const dataDiff = planB.dataGb - planA.dataGb;
+            const minutesDiff = planB.minutes - planA.minutes;
+            const savingsDiff = planB.savings - planA.savings;
+            const familyDiff = planB.familyLines - planA.familyLines;
+            const dailyDiff = Math.abs((feeDiff / 30)).toFixed(1);
+
+            // New Perks in B that are not in A (matching substrings)
+            const newPerks = planB.subs.filter(sB => {
+                return !planA.subs.some(sA => {
+                    const normA = sA.split('(')[0].trim().toLowerCase();
+                    const normB = sB.split('(')[0].trim().toLowerCase();
+                    return normA === normB;
+                });
+            });
+
+            const isUpgrade = feeDiff > 0;
+
+            if (isUpgrade) {
+                // Pitch script
+                let pitchPerksHighlight = newPerks.slice(0, 3).join(' و ');
+                if (!pitchPerksHighlight) pitchPerksHighlight = 'مزايا حصرية إضافية';
+                const pitchText = `يا فندم بفرق ${feeDiff} جنيه بس في الفاتورة الشهرية (يعني حوالي ${dailyDiff} جنيه في اليوم)، حضرتك هتاخد ${dataDiff} جيجا نت إضافية، و${minutesDiff.toLocaleString('ar-EG')} دقيقة زيادة، بالإضافة لاشتراكات (${pitchPerksHighlight}) مجاناً وتوفير إضافي ${savingsDiff.toLocaleString('ar-EG')} ج.م كل شهر!`;
+
+                let newPerksHTML = '';
+                if (newPerks.length > 0) {
+                    newPerksHTML = `
+                        <div class="c-new-perks-box">
+                            <div class="c-box-title"><i data-lucide="sparkles"></i> مزايا ترفيهية ولايف ستايل جديدة سيحصل عليها العميل مجاناً (${newPerks.length}):</div>
+                            <div class="c-perks-grid">
+                                ${newPerks.map(p => `
+                                    <div class="c-perk-badge">
+                                        <i data-lucide="${getIconForSub(p)}"></i>
+                                        <span>${p}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                resultContainer.innerHTML = `
+                    <div class="c-result-card upgrade-mode">
+                        <div class="c-diff-banner">
+                            <div class="c-diff-header">
+                                <span class="c-diff-badge">فرصة الترقية الذكية (Upselling)</span>
+                                <span class="c-diff-sub">من ${planA.name} ⬅️ إلى ${planB.name}</span>
+                            </div>
+                            <div class="c-cost-row">
+                                <div class="c-main-diff">
+                                    <span class="diff-sign">+</span>
+                                    <span class="diff-number">${feeDiff}</span>
+                                    <span class="diff-unit">ج.م / شهر</span>
+                                    <span class="diff-tax-tag">شامل الضريبة</span>
+                                </div>
+                                <div class="c-daily-tag">
+                                    <i data-lucide="clock"></i>
+                                    <span>يعادل فقط <strong>${dailyDiff} ج.م / يومياً</strong>!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="c-gains-grid">
+                            <div class="c-gain-item highlight-net">
+                                <i data-lucide="wifi"></i>
+                                <div class="c-gain-text">
+                                    <span class="gain-lbl">الإنترنت الإضافي</span>
+                                    <span class="gain-val" dir="ltr">+${dataDiff} GB Net</span>
+                                    <span class="gain-sub">${planA.dataGb}GB ⬅️ <strong>${planB.dataGb}GB</strong></span>
+                                </div>
+                            </div>
+
+                            <div class="c-gain-item">
+                                <i data-lucide="phone"></i>
+                                <div class="c-gain-text">
+                                    <span class="gain-lbl">المكالمات الإضافية</span>
+                                    <span class="gain-val" dir="ltr">+${minutesDiff.toLocaleString()} Min</span>
+                                    <span class="gain-sub">${planA.minutes.toLocaleString()} ⬅️ <strong>${planB.minutes.toLocaleString()}</strong></span>
+                                </div>
+                            </div>
+
+                            <div class="c-gain-item">
+                                <i data-lucide="users"></i>
+                                <div class="c-gain-text">
+                                    <span class="gain-lbl">خطوط العائلة</span>
+                                    <span class="gain-val">+${familyDiff} خط</span>
+                                    <span class="gain-sub">${planA.familyLines} خطوط ⬅️ <strong>${planB.familyLines} خطوط</strong></span>
+                                </div>
+                            </div>
+
+                            <div class="c-gain-item highlight-save">
+                                <i data-lucide="gift"></i>
+                                <div class="c-gain-text">
+                                    <span class="gain-lbl">توفير شهري إضافي بالمزايا</span>
+                                    <span class="gain-val" dir="ltr">+${savingsDiff.toLocaleString()} L.E</span>
+                                    <span class="gain-sub">من ${planA.savings.toLocaleString()} ⬅️ <strong>${planB.savings.toLocaleString()} ج.م</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="c-specs-summary-row">
+                            <div class="c-spec-chip">
+                                <i data-lucide="globe"></i>
+                                <span>الدولي: <strong>${planB.intlLabel}</strong></span>
+                            </div>
+                            <div class="c-spec-chip">
+                                <i data-lucide="plane"></i>
+                                <span>التجوال: <strong>${planB.dataRoaming}</strong></span>
+                            </div>
+                            <div class="c-spec-chip">
+                                <i data-lucide="credit-card"></i>
+                                <span>تقسيط أجهزة حتى: <strong>${planB.installment}</strong></span>
+                            </div>
+                        </div>
+
+                        ${newPerksHTML}
+
+                        <div class="c-pitch-box">
+                            <div class="c-pitch-header">
+                                <i data-lucide="quote"></i>
+                                <span>جملة الإقناع المقترحة للعميل (Pitching Script):</span>
+                            </div>
+                            <p class="c-pitch-quote">"${pitchText}"</p>
+                            <div class="c-pitch-actions">
+                                <button type="button" class="c-copy-pitch-btn" id="copyPitchBtn">
+                                    <i data-lucide="copy"></i>
+                                    <span>نسخ الجملة</span>
+                                </button>
+                                <a href="https://wa.me/?text=${encodeURIComponent(pitchText)}" target="_blank" rel="noopener" class="c-share-wa-btn">
+                                    <i data-lucide="send"></i>
+                                    <span>مشاركة عبر واتساب</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Downgrade scenario
+                const posFeeDiff = Math.abs(feeDiff);
+                const posDataDiff = Math.abs(dataDiff);
+                const posMinutesDiff = Math.abs(minutesDiff);
+
+                resultContainer.innerHTML = `
+                    <div class="c-result-card downgrade-mode">
+                        <div class="c-diff-banner downgrade">
+                            <div class="c-diff-header">
+                                <span class="c-diff-badge red">تخفيض الباقة (Downgrade)</span>
+                                <span class="c-diff-sub">من ${planA.name} ⬅️ إلى ${planB.name}</span>
+                            </div>
+                            <div class="c-cost-row">
+                                <div class="c-main-diff red">
+                                    <span class="diff-sign">-</span>
+                                    <span class="diff-number">${posFeeDiff}</span>
+                                    <span class="diff-unit">ج.م / شهر</span>
+                                    <span class="diff-tax-tag">توفير بالفاتورة</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c-downgrade-warning">
+                            <i data-lucide="alert-triangle"></i>
+                            <div>
+                                <strong>تنبيه للموظف:</strong> التخفيض سيوفر للعميل ${posFeeDiff} ج.م في الفاتورة، لكنه سيفقد <strong>${posDataDiff} جيجا نت</strong> و<strong>${posMinutesDiff.toLocaleString()} دقيقة</strong> بالإضافة للعديد من المزايا الحصرية والخصومات.
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (window.safeRenderIcons) window.safeRenderIcons();
+
+            const copyBtn = document.getElementById('copyPitchBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    const quoteText = document.querySelector('.c-pitch-quote')?.textContent || '';
+                    navigator.clipboard.writeText(quoteText).then(() => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.innerHTML = `<i data-lucide="check"></i> <span>تم النسخ!</span>`;
+                        if (window.safeRenderIcons) window.safeRenderIcons();
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.innerHTML = `<i data-lucide="copy"></i> <span>نسخ الجملة</span>`;
+                            if (window.safeRenderIcons) window.safeRenderIcons();
+                        }, 2000);
+                    });
+                });
+            }
+        }
+
+        planASelect.addEventListener('change', renderComparison);
+        planBSelect.addEventListener('change', renderComparison);
+
+        if (swapBtn) {
+            swapBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const temp = planASelect.value;
+                planASelect.value = planBSelect.value;
+                planBSelect.value = temp;
+                renderComparison();
+                if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(8);
+            });
+        }
+
+        renderComparison();
+    }
+
     initRechargeCalc();
     initPremierVfm();
     initDeviceInsuranceCalc();
+    initPremierComparison();
 });
