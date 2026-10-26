@@ -1,6 +1,6 @@
 /**
  * SKIPER UI - RUNTIME ENGINE ✨
- * Powers Spotlight, Quick Action Chips & Dynamic 3D Parallax Tilt
+ * Powers Spotlight & Dynamic 3D Parallax Tilt
  * Cleaned & Production-Ready for Deployment
  */
 
@@ -46,44 +46,7 @@
         }
     }
 
-    // 2. QUICK ACTION FILTER CHIPS
-    function initQuickChips() {
-        const chips = document.querySelectorAll('.skiper-chip');
-        if (!chips || chips.length === 0) return;
-
-        chips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                triggerHaptic();
-                chips.forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-
-                const action = chip.getAttribute('data-action');
-                if (action === 'all') {
-                    if (typeof window.activateTab === 'function') window.activateTab('home');
-                } else if (action === 'tab') {
-                    const target = chip.getAttribute('data-target');
-                    if (target && typeof window.activateTab === 'function') {
-                        window.activateTab(target);
-                    }
-                } else if (action === 'search') {
-                    const query = chip.getAttribute('data-query');
-                    if (query) {
-                        if (typeof window.activateTab === 'function') {
-                            window.activateTab('sr');
-                        }
-                        const searchInput = document.getElementById('searchInput');
-                        if (searchInput) {
-                            searchInput.value = query;
-                            searchInput.dispatchEvent(new Event('input', { bubbles: true }));
-                            searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    }
-                }
-            });
-        });
-    }
-
-    // 3. DYNAMIC 3D TILT & PARALLAX HOVER ENGINE
+    // 2. DYNAMIC 3D TILT & PARALLAX HOVER ENGINE
     function init3DTilt() {
         const tiltCards = document.querySelectorAll('.bento-card, .dash-link-card');
         if (!tiltCards || tiltCards.length === 0) return;
@@ -164,7 +127,6 @@
     // Initialize on DOM load
     document.addEventListener('DOMContentLoaded', () => {
         initSpotlight();
-        initQuickChips();
         init3DTilt();
 
         if (typeof window.safeRenderIcons === 'function') {

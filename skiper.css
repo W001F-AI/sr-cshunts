@@ -149,7 +149,7 @@
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 30px 20px 24px 20px !important;
+    padding: 26px 20px 22px 20px !important;
     margin: 0 auto 25px auto !important;
     max-width: 960px !important;
     background: linear-gradient(180deg, rgba(255, 121, 0, 0.08) 0%, rgba(16, 20, 29, 0.6) 100%) !important;
@@ -165,7 +165,7 @@
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    margin-bottom: 22px !important;
+    margin-bottom: 20px !important;
 }
 
 .greeting-center-box {
@@ -258,7 +258,7 @@
     gap: 12px !important;
     width: 100% !important;
     max-width: 580px !important;
-    margin: 0 auto 22px auto !important;
+    margin: 0 auto !important;
 }
 
 @media (max-width: 540px) {
@@ -286,71 +286,6 @@
     background: rgba(255, 121, 0, 0.1) !important;
     border-color: rgba(255, 121, 0, 0.4) !important;
     box-shadow: 0 8px 25px rgba(255, 121, 0, 0.18) !important;
-}
-
-/* Centered Quick Action Chips */
-.skiper-quick-chips {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-    padding: 6px 4px 6px 4px !important;
-    flex-wrap: wrap !important;
-}
-
-@media (max-width: 680px) {
-    .skiper-quick-chips {
-        justify-content: flex-start !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        padding-bottom: 8px !important;
-        -webkit-overflow-scrolling: touch !important;
-    }
-}
-
-.skiper-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.7);
-    font-family: 'Cairo', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
-
-.skiper-chip i {
-    width: 14px;
-    height: 14px;
-    stroke-width: 2.2;
-}
-
-.skiper-chip:hover {
-    background: rgba(255, 121, 0, 0.1);
-    border-color: rgba(255, 121, 0, 0.3);
-    color: #fff;
-}
-
-.skiper-chip.active {
-    background: linear-gradient(135deg, rgba(255, 121, 0, 0.25), rgba(255, 146, 51, 0.15));
-    border-color: rgba(255, 121, 0, 0.55);
-    color: #ffaa55;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(255, 121, 0, 0.2);
-}
-
-.skiper-chip:active {
-    transform: scale(0.95);
 }
 
 /* ========================================================
