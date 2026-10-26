@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderGlobalSearchResults(results) {
-        const query = globalSearchInput.value.trim();
+        const query = globalSearchInput ? globalSearchInput.value.trim() : "";
 
         // Highlight matching text in orange
         function highlightText(text, q) {
@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = '';
             document.body.style.position = '';
             document.body.style.width = '';
-            globalSearchInput.value = '';
+            if (globalSearchInput) globalSearchInput.value = "";
             if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(12);
         });
     }
@@ -486,13 +486,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             globalSearchModal.classList.remove('active');
-            globalSearchInput.blur();
+            if (globalSearchInput) globalSearchInput.blur();
         }
         // "/" shortcut to open search (skip if already typing in an input)
         if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
             e.preventDefault();
             globalSearchModal.classList.add('active');
-            setTimeout(() => globalSearchInput.focus(), 100);
+            if (globalSearchInput) setTimeout(() => globalSearchInput.focus(), 100);
         }
     });
 
@@ -503,10 +503,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const bottomTabs = document.querySelectorAll('.bottom-tab-bar .tab-btn');
 
     function updateBottomTabs(activeTab) {
+        if (typeof window.updateSkiperDock === 'function') {
+            window.updateSkiperDock(activeTab);
+            return;
+        }
         if (bottomTabs.length === 0) return;
         bottomTabs.forEach(t => t.classList.remove('active'));
         const activeBtn = document.querySelector(`.bottom-tab-bar .tab-btn[data-nav="${activeTab}"]`);
-        const indicator = document.querySelector('.tab-indicator');
+        const indicator = document.querySelector('.tab-indicator') || document.querySelector('.dock-indicator');
         const bar = document.getElementById('bottomTabBar');
         
         if (activeBtn && indicator && bar) {
@@ -565,12 +569,8 @@ document.addEventListener('DOMContentLoaded', () => {
             initFreemaxWizard();
         }
         
-        // Update Bottom Nav: If it's tracker, highlight tracker, else highlight home
-        if (targetTab === 'tracker') {
-            updateBottomTabs('tracker');
-        } else {
-            updateBottomTabs('home');
-        }
+        // Update Bottom Nav
+        updateBottomTabs(targetTab);
 
         // Re-render icons for any static content
         window.safeRenderIcons();
@@ -601,9 +601,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const navTarget = btn.getAttribute('data-nav');
                 if (navTarget === 'home') {
                     goHome();
-                } else if (navTarget === 'tracker') {
-                    window.location.hash = 'tracker';
-                    updateBottomTabs('tracker');
+                } else if (navTarget === 'assistant') {
+                    if (typeof window.toggleAssistant === 'function') {
+                        window.toggleAssistant();
+                    } else {
+                        const fab = document.getElementById('srAssistantFab');
+                        if (fab) fab.click();
+                    }
+                } else if (navTarget) {
+                    window.location.hash = navTarget;
+                    activateTab(navTarget);
+                    updateBottomTabs(navTarget);
                 }
             });
         });

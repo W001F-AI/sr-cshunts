@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputEl = document.getElementById('assistantInput');
         const sendBtn = document.getElementById('sendAssistantBtn');
 
-        if (!fab || !windowEl) {
-            setTimeout(initAssistant, 500);
+        if (!windowEl) {
             return;
         }
 
@@ -221,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function toggleWindow() {
             isWindowOpen = !isWindowOpen;
             windowEl.classList.toggle('active', isWindowOpen);
-            fab.classList.toggle('minimized', isWindowOpen);
+            if (fab) fab.classList.toggle('minimized', isWindowOpen);
             if (isWindowOpen) {
                 initBubbles();
                 setTimeout(() => inputEl.focus(), 400);
@@ -231,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        window.toggleAssistant = toggleWindow;
 
         function handleSend() {
             const text = inputEl.value.trim();
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messagesContainer.scrollTo({ top: messagesContainer.scrollHeight, behavior: 'smooth' });
         }
 
-        fab.addEventListener('click', toggleWindow);
+        if (fab) fab.addEventListener('click', toggleWindow);
         if (closeBtn) closeBtn.addEventListener('click', toggleWindow);
         if (sendBtn) sendBtn.addEventListener('click', handleSend);
         if (inputEl) inputEl.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });

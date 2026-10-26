@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bento.css">
     <link rel="stylesheet" href="assistant.css">
+    <link rel="stylesheet" href="skiper.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -44,6 +45,7 @@
     
     <!-- SR Assistant Styles -->
     <link rel="stylesheet" href="assistant.css">
+    <link rel="stylesheet" href="skiper.css">
 
 </head>
 
@@ -131,46 +133,33 @@
         <div class="blob dark"></div>
     </div>
 
-    <header>
-        <div class="container header-container">
-            <div class="global-search-wrapper">
-                <i data-lucide="search" class="global-search-icon"></i>
-                <input type="text" id="globalSearchInput" placeholder="بحث شامل: أرقام، إقرارات، إيميلات..."
-                    autocomplete="off">
-                <span class="search-shortcut-hint" title="اضغط / للبحث">/</span>
-                <div class="global-search-glow"></div>
-            </div>
+        <header class="skiper-centered-header">
+        <div class="container header-container-centered">
+            <!-- News button on the side -->
+            <button id="newsToggleBtn" class="news-toggle-btn centered-news-btn" title="ما الجديد؟">
+                <i data-lucide="sparkles"></i>
+                <span class="news-badge"></span>
+            </button>
 
-            <div class="header-actions">
-                <!-- Mobile-only compact logo (replaces 3D logo on small screens) -->
-                <div class="mobile-logo-text">
-                    <span class="mobile-logo-brand">ORANGE</span>
-                    <span class="mobile-logo-badge">SR</span>
-                </div>
-
-                <!-- Desktop 3D logo (hidden on mobile) -->
-                <div class="logo header-3d-wrapper">
-                    <div class="logo-3d-core header-3d-logo">
-                        <div class="logo-layer-back"></div>
-                        <div class="logo-layer-glass"></div>
-                        <div class="logo-layer-front">
-                            <div class="orange-layer-text">ORANGE</div>
-                            <div class="orange-layer-tm">TM</div>
-                        </div>
-                        <div class="sr-floating-badge header-floating-badge">SR</div>
+            <!-- Centered 3D Luxury Masterpiece Logo -->
+            <div class="logo-hero-wrapper" id="center3dLogoWrapper" title="الرئيسية" onclick="window.activateTab ? window.activateTab('home') : (window.location.hash = 'home')">
+                <div class="logo-3d-pulse-glow"></div>
+                <div class="logo-3d-core center-3d-logo" id="headerCenter3dLogo">
+                    <div class="logo-layer-back"></div>
+                    <div class="logo-layer-glass"></div>
+                    <div class="logo-layer-front">
+                        <div class="orange-layer-text">ORANGE</div>
+                        <div class="orange-layer-tm">TM</div>
                     </div>
-                </div>
-                
-                <!-- Action buttons: news + back to home -->
-                <div class="header-buttons">
-                    <button id="newsToggleBtn" class="news-toggle-btn" title="ما الجديد؟">
-                        <i data-lucide="sparkles"></i>
-                        <span class="news-badge"></span>
-                    </button>
-
-                    <!-- Removed backToHomeBtn, moved functionality to Bottom Tab Bar -->
+                    <div class="sr-floating-badge header-floating-badge">SR</div>
                 </div>
             </div>
+            
+            <!-- Balanced invisible spacer for perfect geometric centering -->
+            <!-- Back to Home button -->
+            <button id="headerHomeBtn" class="header-home-btn centered-news-btn" title="الرجوع للرئيسية" onclick="window.activateTab ? window.activateTab('home') : (window.location.hash = 'home')">
+                <i data-lucide="home"></i>
+            </button>
         </div>
     </header>
 
@@ -197,10 +186,15 @@
         <!-- Home Dashboard (Masterpiece Addition) -->
         <div id="welcomeDashboard" class="home-dashboard">
             <div class="dashboard-greeting">
-                <div class="greeting-text">
+                <div class="greeting-center-box">
+                    <div class="skiper-status-pill">
+                        <span class="skiper-status-dot"></span>
+                        <span>أوفلاين جاهز</span>
+                    </div>
                     <h2 id="dashGreeting">صباح الخير</h2>
                     <div class="date-time-wrapper">
                         <p id="dashDate">الجمعة، 17 أبريل 2026</p>
+                        <span class="date-time-sep">·</span>
                         <p id="dashTime" class="dash-time">12:00:00 م</p>
                     </div>
                 </div>
@@ -220,11 +214,22 @@
                     <span>الموقع الرسمي</span>
                 </a>
             </div>
+
+            <!-- Quick Action Filter Chips -->
+            <div class="skiper-quick-chips">
+                <button class="skiper-chip active" data-action="all"><i data-lucide="layout-grid"></i> الكل</button>
+                <button class="skiper-chip" data-action="tab" data-target="sr"><i data-lucide="database"></i> موسوعة SR</button>
+                <button class="skiper-chip" data-action="tab" data-target="hunts"><i data-lucide="phone"></i> أرقام Hunts</button>
+                <button class="skiper-chip" data-action="search" data-query="إقرار"><i data-lucide="file-text"></i> الإقرارات</button>
+                <button class="skiper-chip" data-action="search" data-query="كاش"><i data-lucide="wallet"></i> أورانج كاش</button>
+                <button class="skiper-chip" data-action="tab" data-target="tracker"><i data-lucide="target"></i> المتتبع</button>
+            </div>
         </div>
 
         <!-- New Bento Box Dashboard -->
         <div id="homeNavDashboard" class="bento-nav-grid active">
-            <div class="bento-card bento-large" data-tab="sr">
+            <div class="bento-card bento-large skiper-beam" data-tab="sr">
+                <div class="skiper-beam-wrapper"><div class="skiper-beam-core"></div></div>
                 <div class="bento-visual"></div>
                 <div class="bento-content">
                     <h3>موسوعة الـ SR</h3>
@@ -277,7 +282,8 @@
                 <div class="bento-content"><h3>Docs Hub</h3></div>
             </div>
 
-            <div class="bento-card bento-small tracker-card-btn" data-tab="tracker">
+            <div class="bento-card bento-small tracker-card-btn skiper-beam-subtle" data-tab="tracker">
+                <div class="skiper-beam-wrapper"><div class="skiper-beam-core"></div></div>
                 <div class="bento-visual"></div>
                 <i data-lucide="target"></i>
                 <div class="bento-content"><h3>المتتبع 🎯</h3></div>
@@ -1496,7 +1502,7 @@
 
     <!-- ===== SR ASSISTANT ===== -->
     <!-- Chat Button (FAB) -->
-    <div id="srAssistantFab" class="sr-assistant-fab" aria-label="SR Assistant" title="تحدث مع مساعد SR">
+    <div id="srAssistantFab" class="sr-assistant-fab" aria-label="SR Assistant" title="تحدث مع مساعد SR" style="display: none !important;">
         <div class="fab-orb"></div>
         <i data-lucide="bot"></i>
     </div>
@@ -1621,23 +1627,12 @@
         }
     </script>
 
-    <nav class="bottom-tab-bar" id="bottomTabBar">
-        <div class="tab-indicator"></div>
-        <button class="tab-btn active" data-nav="home">
-            <i data-lucide="home"></i>
-            <span>الرئيسية</span>
-        </button>
-        <button class="tab-btn" data-nav="tracker">
-            <i data-lucide="target"></i>
-            <span>المتتبع</span>
-        </button>
-    </nav>
-
     <!-- Offline UI Toast -->
     <div id="offlineToast" class="offline-toast" style="display: none;">
         <i data-lucide="wifi-off"></i>
         <span>أنت حالياً غير متصل بالإنترنت. (الوضع الاوفلاين نشط)</span>
     </div>
+    <script src="skiper.js" defer></script>
 </body>
 
 </html>

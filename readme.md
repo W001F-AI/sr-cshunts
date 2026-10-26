@@ -1,6 +1,6 @@
 # Orange SR Encyclopedia Deployment Guide
 
-This project is now ready for deployment on **Netlify** or any other static hosting service.
+This project is fully optimized and ready for deployment on **Vercel** (or any static hosting service).
 
 ## Important Steps Before Deployment
 
@@ -10,15 +10,32 @@ This project is now ready for deployment on **Netlify** or any other static host
    python build.py
    ```
 
-2. **Upload All Files:**
-   When uploading to Netlify, make sure you include the following files:
+2. **Deploy to Vercel:**
+   - **Via Vercel CLI:**
+     ```bash
+     vercel --prod
+     ```
+   - **Via Git (GitHub / GitLab / Bitbucket):**
+     Just push your commits to your repository linked with Vercel. Vercel will automatically deploy the static site in seconds.
+
+3. **Key Production Files:**
+   When uploading, the following core files are included:
    - `index.html`
    - `style.css`
+   - `bento.css`
+   - `assistant.css`
+   - `skiper.css` (Skiper UI Design System)
+   - `skiper.js` (Skiper UI Engine)
    - `app.js`
+   - `assistant.js`
    - `data.js` (Generated)
    - `hunts.js` (Generated)
    - `emails.js` (Generated)
    - `plans.js` (Generated)
+   - `docs.js` (Generated)
+   - `freemax.js` (Generated)
+   - `manifest.json` & `sw.js` (PWA Offline Engine)
+   - `vercel.json` (Vercel Cache & Edge Rules)
    - `asko-logo.png` (Logo Asset)
 
 ## Why Was It Not Working on iPhone?
